@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', sans-serif;
+}
+
+#task-name,
+#task-date,
+#task-content {
+    margin: 0;
+}
+
+button {
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.application-header {
+    background-color: rgb(219, 219, 219);
+    height: 10%;
+}
+
+.application-name {
+    text-align: center;
+}
+
+#open-list-form-button {
+    display: block;
+    margin: 0px auto;
+}
+
+.list-creation-form,
+.task-creation-form {
+    padding: 18px;
+    height: fit-content;
+    width: 35%;
+    border-radius: 20px;
+    background-color: rgb(219, 219, 219);
+    margin: 10px auto;
+}
+
+#list {
+    height: fit-content;
+    width: fit-content;
+    display: inline-block;
+    border-radius: 12px;
+    padding: 10px;
+    background-color: rgb(219, 219, 219);
+    margin-left: 100px;
+}
+
+#task {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    height: 100px;
+    width: 350px;
+    background-color: white;
+}
+
+#task:hover {
+    cursor: grab;
+}
+
+#task-name {
+    color: red;
+    margin-left: 8px;
+}
+
+#task-date {
+    display: inline-block;
+    margin-left: 8px;
+}
+
+#task-content {
+    margin-left: 8px;
+}
+
+#list-header-save-as-csv-button {
+    width: 48px;
+}
+
+#list-header-delete-button {
+    width: 48px;
+}
+
+#list-header-load-as-csv-button {
+    width: 48px;
+}
