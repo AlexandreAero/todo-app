@@ -11,7 +11,7 @@ class List {
 
         this.filteringTasks = false;
         this.orderingTasksByDueDate = false;
-        
+
         this.localStorageKey = `todo-app-tasks-${this.name}`;
 
         this.initDOM();
@@ -90,7 +90,7 @@ class List {
     bindEventListeners() {
         this.deleteButton.addEventListener('click', () => this.drop());
         this.saveAsCSVButton.addEventListener('click', () => this.saveAsCSV());
-        this.loadCSVButton.addEventListener('click', () => showCSVForm());
+        this.loadCSVButton.addEventListener('click', () => showCSVImportForm());
         this.filterButton.addEventListener('click', () => this.toggleTaskFiltering());
         this.addNewTaskButton.addEventListener('click', () => showTaskForm());
         this.orderByDueDateButton.addEventListener('click', () => this.orderByDueDate());
@@ -103,6 +103,17 @@ class List {
         this.tasks.forEach((task, index) => {
             this.renderTask(task, index);
         });
+    }
+
+    /**
+     * Clear the existing task DOM elements.
+     */
+    clearTaskDOM() {
+        this.tasksDOM.forEach((taskDom) => {
+            this.holder.removeChild(taskDom);
+        });
+        
+        this.tasksDOM = [];
     }
 
     /**
@@ -164,17 +175,6 @@ class List {
     }
 
     /**
-     * Clear the existing task DOM elements
-     */
-    clearTaskDOM() {
-        this.tasksDOM.forEach((taskDom) => {
-            this.holder.removeChild(taskDom);
-        });
-    
-        this.tasksDOM = [];
-    }
-
-    /**
      * Creates a new task in the list. The task is immediatly
      * added to the list. Note that ``task.done`` is set to false.
      * @param {String} name 
@@ -204,7 +204,9 @@ class List {
                 this.holder.removeChild(removedTaskDom);
             }
 
+            this.clearTaskDOM();
             this.saveInLocalStorage();
+            this.render();
         } else {
             throw new Error(`Invalid task index ${taskIndex}`);
         }
@@ -304,7 +306,18 @@ class List {
      * @param {String} csvBuffer a string buffer of the CSV content.
      */
     loadFromCSV(csvBuffer) {
-        const lines = csvBuffer.split('\n');
+        const lines = csvBuffer.trim().split('\n');
+
+        if (lines.length === 0) {
+            throw new Error('CSV buffer is empty');
+        }
+
+        const header = lines[0].split(';');
+
+        if (header.length !== 4) {
+            throw new Error('CSV header is invalid');
+        }
+
         lines.shift(); // Remove header
 
         lines.forEach((line) => {

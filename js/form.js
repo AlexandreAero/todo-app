@@ -1,38 +1,18 @@
-const createNewListButton = document.getElementById('open-list-form-button');
-
 const listCreationForm = document.getElementById('list-creation-form');
 const taskCreationForm = document.getElementById('task-creation-form');
-
-createNewListButton.addEventListener('click', showListForm);
-
-/**
- * 
- */
-function showListForm() {
-    const confirmListCreationButton = document.getElementById('list-form-confirm-creation');
-    confirmListCreationButton.addEventListener('click', () => {
-        // Hide list form
-        // Create new list
-    });
-}
+const csvForm = document.getElementById('csv-import-form');
 
 /**
- * 
+ * Shows the CSV import form.
  */
-function showTaskForm() {
-    const taskNameInput = document.getElementsByName('task-name-input')[0];
-    taskNameInput.placeholder = getRandomTaskName();
-
-    console.log('showing task form');
-
-    // create task from selected list
-
-    // hide task form when confirmed task creation
+function showCSVImportForm() {
+    csvForm.classList.toggle('hidden');
 }
 
-function showCSVForm() {
-    console.log('showing CSV form');
-}
+document.getElementById('load-csv-button').addEventListener('click', () => {
+    const textArea = document.getElementById('csv-import-form-input-text');
+    firstList.loadFromCSV(textArea.value);
+});
 
 /**
  * Returns a random task based on predefined names.

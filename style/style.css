@@ -1,11 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+body {
+    margin: 0;
+    padding: 0;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Roboto', sans-serif;
 }
 
 button {
-    background-color: black;
+    background-color: rgb(219, 219, 219);
     border: none;
     color: white;
     padding: 15px 32px;
@@ -15,15 +20,30 @@ button {
     font-size: 16px;
     border-radius: 10px;
     cursor: pointer;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+#create-new-list-button {
+    vertical-align: top;
+    height: 300px;
+    width: 30%;
+    border-radius: 12px;
+    padding: 16px;
+    background-color: rgb(219, 219, 219);
+    float: none;
+    display: inline-block;
+    zoom: 1;
+    margin: 0 0.65%;
 }
 
 .application-header {
     background-color: rgb(219, 219, 219);
-    height: 10%;
+    height: 50px;
 }
 
 .application-name {
     text-align: center;
+    margin: 0;
 }
 
 #open-list-form-button {
@@ -46,8 +66,8 @@ button {
     padding: 20px; /* or margin top */
     overflow-x: scroll;
     overflow-y: hidden;
-    position: relative;
     white-space: nowrap;
+    height: 100vh;
 }
 
 .list {
@@ -64,7 +84,7 @@ button {
 }
 
 .list-header-name {
-    font-size: 32px;
+    font-size: 28px;
 }
 
 .list-header-buttons-holder {
@@ -80,7 +100,7 @@ button {
     padding: 16px;
     background-color: white;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
-    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .task:hover {
@@ -95,16 +115,17 @@ button {
 
 .task-name {
     color: red;
-    margin-left: 8px;
+    margin-left: 6px;
 }
 
-.task-date {
-    display: inline-block;
-    margin-left: 8px;
+.task-date,
+.task-content {
+    margin-left: 6px;
 }
 
 .task-content {
-    margin-left: 8px;
+    word-wrap: break-all;
+    white-space: normal;
 }
 
 .list-header-save-as-csv-button,
@@ -133,4 +154,32 @@ button {
     background-color: rgb(219, 219, 219);
     font-style: italic;
     text-decoration: line-through;
+}
+
+#csv-import-form {
+    width: 80%;
+    height: fit-content;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: auto;
+}
+
+#csv-import-form-input-text {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: auto;
+    height: 40vh;
+}
+
+#load-csv-button {
+    margin-top: 12px;
+}
+
+.hidden {
+    display: none;
 }

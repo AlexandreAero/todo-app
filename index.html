@@ -9,7 +9,6 @@
     <body>
         <header class="application-header">
             <h1 class="application-name">TODO application📝</h1>
-            <button id="open-list-form-button">Create new list</button>
         </header>
         <form id="list-creation-form">
             <h2>Create new list:</h2>
@@ -24,7 +23,15 @@
             <input name="task-due-date-input" type="text" placeholder="">
             <button id="task-form-confirm-creation">Create!</button>
         </form>
+        <div id="csv-import-form" class="hidden">
+            <h3>Import CSV here</h3>
+            <textarea name="CSV import text area" id="csv-import-form-input-text" placeholder="Enter CSV here..."></textarea>
+            <button id="load-csv-button">Confirm!</button>
+        </div>
         <div id="list-container">
+            <!--<button id="create-new-list-button">
+                <img alt="Create new list" src="./images/add.svg">
+            </button>-->
             <!-- Lists and their tasks are added here -->
         </div>
         <script type="text/javascript" src="./js/task.js"></script>
