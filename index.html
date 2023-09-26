@@ -4,26 +4,26 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./style/style.css">
-        <title>TODO APPLICATION</title>
+        <title>TODO application📝</title>
     </head>
     <body>
         <header class="application-header">
-            <h1 class="application-name">TODO APPLICATION</h1>
+            <h1 class="application-name">TODO application📝</h1>
             <button id="open-list-form-button">Create new list</button>
         </header>
-        <div class="list-creation-form">
+        <form id="list-creation-form">
             <h2>Create new list:</h2>
             <input name="list-name-input" type="text" placeholder="">
             <button id="list-form-confirm-creation">Create!</button>
-        </div>
-        <div class="task-creation-form">
+        </form>
+        <form id="task-creation-form">
             <h2>Create new task:</h2>
             <h3>Name:</h3>
             <input name="task-name-input" type="text" placeholder="">
             <h3>Due date:</h3>
             <input name="task-due-date-input" type="text" placeholder="">
             <button id="task-form-confirm-creation">Create!</button>
-        </div>
+        </form>
         <div id="list-container">
             <!-- Lists and their tasks are added here -->
         </div>

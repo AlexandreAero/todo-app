@@ -3,10 +3,10 @@
  * about the task.
  */
 class Task {
-    constructor(name, date, content) {
+    constructor(name, date, content, done) {
         this.name = name;
         this.date = date;
         this.content = content;
-        this.done = false;
+        this.done = done;
     }
 }

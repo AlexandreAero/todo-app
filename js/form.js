@@ -1,7 +1,7 @@
 const createNewListButton = document.getElementById('open-list-form-button');
 
-const listCreationForm = document.getElementsByClassName('list-creation-form')[0];
-const taskCreationForm = document.getElementsByClassName('task-creation-form')[0];
+const listCreationForm = document.getElementById('list-creation-form');
+const taskCreationForm = document.getElementById('task-creation-form');
 
 createNewListButton.addEventListener('click', showListForm);
 

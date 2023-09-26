@@ -5,9 +5,10 @@
 class List {
     constructor(name) {
         this.name = name;
-        this.tasks = []; // Keeps track of the objects themselves
-        this.tasksDom = []; // Keep track of the created DOM elements
+        this.tasks = [];
+        this.tasksDom = [];
         this.filteringTasks = false;
+        this.localStorageKey = `todo-app-tasks-${this.name}`;
 
         this.initDOM();
         this.loadFromLocalStorage();
@@ -28,6 +29,7 @@ class List {
         this.domSaveCSV = document.createElement('input');
         this.domLoadCSV = document.createElement('input');
         this.domFilter = document.createElement('input');
+        this.domNewTask = document.createElement('input');
 
         this.domParent.className = 'list';
         this.domHeader.className = 'list-header';
@@ -36,21 +38,25 @@ class List {
         this.domSaveCSV.className = 'list-header-save-as-csv-button';
         this.domLoadCSV.className = 'list-header-load-as-csv-button';
         this.domFilter.className = 'list-header-filter-button';
+        this.domNewTask.className = 'list-header-new-task-button';
 
         this.domDelete.type = 'image';
         this.domSaveCSV.type = 'image';
         this.domLoadCSV.type = 'image';
         this.domFilter.type = 'image';
+        this.domNewTask.type = 'image';
 
         this.domDelete.alt = 'Delete list button';
         this.domSaveCSV.alt = 'Save list as CSV button';
         this.domLoadCSV.alt = 'Load list as CSV button';
         this.domFilter.alt = 'Filter tasks';
+        this.domNewTask.alt = 'Add new task';
         
         this.domDelete.src = '../images/close.svg';
         this.domSaveCSV.src = '../images/download.svg';
         this.domLoadCSV.src = '../images/upload.svg';
         this.domFilter.src = '../images/filter.svg';
+        this.domNewTask.src = '../images/add.svg';
 
         this.domName.innerHTML = this.name;
 
@@ -59,6 +65,7 @@ class List {
         this.domHeader.appendChild(this.domSaveCSV);
         this.domHeader.appendChild(this.domLoadCSV);
         this.domHeader.appendChild(this.domFilter);
+        this.domHeader.appendChild(this.domNewTask);
         this.domParent.appendChild(this.domHeader);
         this.holder.appendChild(this.domParent);
     }
@@ -69,11 +76,20 @@ class List {
     bindEventListeners() {
         this.domDelete.addEventListener('click', () => this.drop());
         this.domSaveCSV.addEventListener('click', () => this.saveAsCSV());
-        this.domLoadCSV.addEventListener('click', () => this.loadFromCSV());
+        
+        this.domLoadCSV.addEventListener('click', () => {
+            this.loadFromCSV();
+            // TODO: Show import CSV form
+        });
 
         this.domFilter.addEventListener('click', () => {
             this.filteringTasks = !this.filteringTasks;
             this.filterTasks(this.filteringTasks);
+        });
+
+        this.domNewTask.addEventListener('click', () => {
+            // TODO: Get data from form
+            this.createNewTask('test', 'test', 'lorem ipsum');
         });
     }
 
@@ -81,24 +97,47 @@ class List {
      * Render the list and its tasks.
      */
     render() {
-        this.tasks.forEach((task) => {
-            this.renderSingleTask(task);
+        this.tasks.forEach((task, index) => {
+            this.renderTask(task, index);
         });
     }
 
     /**
      * Renders a single task object. 
      */
-    renderSingleTask(task) {
+    renderTask(task, index) {
         const domHolder = document.createElement('div');
         const domName = document.createElement('h2');
         const domDate = document.createElement('h3');
         const domContent = document.createElement('h3');
+        const domDelete = document.createElement('input');
+        const domToggle = document.createElement('input');
+
+        domToggle.checked = task.done;
+
+        domToggle.addEventListener('change', () => {
+            task.done = domToggle.checked;
+            this.saveInLocalStorage();
+        });
+
+        domDelete.addEventListener('click', () => {
+            this.removeTask(index);
+            this.saveInLocalStorage();
+        });
 
         domHolder.className = 'task';
         domName.className = 'task-name';
         domDate.className = 'task-date';
         domContent.className = 'task-content';
+        domDelete.className = 'task-delete-button';
+        domToggle.className = 'task-toggle-status';
+
+        domDelete.type = 'image';
+        domDelete.alt = 'Delete task';
+        domDelete.src = '../images/close.svg';
+
+        domToggle.type = 'checkbox';
+        domToggle.alt = 'Toggle task status';
 
         domName.innerHTML = task.name;
         domDate.innerHTML = task.date;
@@ -107,6 +146,8 @@ class List {
         domHolder.appendChild(domName);
         domHolder.appendChild(domDate);
         domHolder.appendChild(domContent);
+        domHolder.appendChild(domDelete);
+        domHolder.appendChild(domToggle);
         this.domParent.appendChild(domHolder);
 
         this.tasksDom.push(domHolder);
@@ -116,8 +157,8 @@ class List {
      * Creates a new task in the list. The task is immediatly
      * added to the list. Note that ``task.done`` is set to false.
      */
-    createNewTask(name, date, content) {
-        const task = new Task(name, date, content);
+    createNewTask(name, date, content, done = false) {
+        const task = new Task(name, date, content, done);
         this.tasks.push(task);
 
         this.tasksDom.forEach((taskDom) => {
@@ -135,11 +176,10 @@ class List {
      */
     removeTask(taskIndex) {
         if (taskIndex >= 0 && taskIndex < this.tasks.length) {
-            // Remove object
             this.tasks.splice(taskIndex, 1);
 
-            // Remove DOM element
             const removedTaskDom = this.tasksDom.splice(taskIndex, 1)[0];
+            
             if (removedTaskDom) {
                 this.domParent.removeChild(removedTaskDom);
             }
@@ -157,8 +197,7 @@ class List {
     transferTask(taskIndex, newList, newIndex) {
         if (taskIndex >= 0 && taskIndex < this.tasks.length 
             && newIndex >= 0 && newIndex < newList.tasks.length) {
-
-            this.saveInLocalStorage();
+            
         } else {
             throw new Error(`Invalid task index ${taskIndex}`);
         }
@@ -169,9 +208,11 @@ class List {
      */
     drop() {
         this.tasks = [];
+        this.tasksDom = [];
         this.domParent.remove();        
 
-        localStorage.removeItem(`todo-apps-tasks-${this.name}`);
+        // Removed saved tasks from local storage
+        localStorage.removeItem(this.localStorageKey);
     }
 
     /**
@@ -201,7 +242,7 @@ class List {
      */
     saveAsCSV() {
         if (!this.tasks || this.tasks.length === 0) {
-            alert('No tasks to copy!');
+            alert('No CSV to copy!');
             return;
         }
 
@@ -229,8 +270,12 @@ class List {
         lines.shift(); // Remove header
 
         lines.forEach((line) => {
-            let subLines = line.split(';');
-            this.createNewTask(subLines[0], subLines[1], subLines[2]);
+            const subLines = line.split(';');
+            const name = subLines[0];
+            const date = subLines[1];
+            const content = subLines[2];
+            const done = subLines[3] === 'true' ? true : false;
+            this.createNewTask(name, date, content, done);
         });
     }
 
@@ -239,14 +284,16 @@ class List {
      */
     saveInLocalStorage() {
         const jsonTasks = JSON.stringify(this.tasks);
-        localStorage.setItem(`todo-apps-tasks-${this.name}`, jsonTasks);
+        localStorage.setItem(this.localStorageKey, jsonTasks);
     }
 
     /**
      * Loads the tasks into the list from the browser local storage.
+     * Note this might silently fail it no content was saved in the
+     * local storage.
      */
     loadFromLocalStorage() {
-        const jsonTasks = localStorage.getItem(`todo-apps-tasks-${this.name}`);
+        const jsonTasks = localStorage.getItem(this.localStorageKey);
         if (jsonTasks !== null) {
             this.tasks = JSON.parse(jsonTasks);
         }

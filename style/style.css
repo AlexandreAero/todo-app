@@ -31,37 +31,54 @@ button {
     margin: 0px auto;
 }
 
-.list-creation-form,
-.task-creation-form {
+#list-creation-form,
+#task-creation-form {
     padding: 18px;
     height: fit-content;
     width: 35%;
     border-radius: 20px;
     background-color: rgb(219, 219, 219);
     margin: 10px auto;
+    display: none;
+}
+
+#list-container {
+    padding: 20px; /* or margin top */
+    overflow-x: scroll;
+    overflow-y: hidden;
+    position: relative;
+    white-space: nowrap;
 }
 
 .list {
+    vertical-align: top;
     height: fit-content;
-    width: fit-content;
-    display: inline-block;
+    width: 30%;
     border-radius: 12px;
-    padding: 10px;
+    padding: 16px;
     background-color: rgb(219, 219, 219);
-    margin-left: 100px;
+    float: none;
+    display: inline-block;
+    zoom: 1;
+    margin: 0 0.65%;
+}
+
+.list-header-name {
+    font-size: 32px;
 }
 
 .task {
     margin-top: 15px;
     margin-bottom: 15px;
-    border-radius: 10px;
-    height: 100px;
-    width: 350px;
+    border-radius: 6px;
+    padding: 16px;
     background-color: white;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    word-wrap: break-word;
 }
 
 .task:hover {
-    cursor: grab;
+    cursor: move;
 }
 
 .task-name,
@@ -87,7 +104,13 @@ button {
 .list-header-save-as-csv-button,
 .list-header-delete-button,
 .list-header-load-as-csv-button,
-.list-header-filter-button {
-    width: 48px;
-    height: 48px;
+.list-header-filter-button,
+.list-header-new-task-button {
+    width: 38px;
+    height: 38px;
+}
+
+.task-delete-button {
+    width: 22px;
+    height: 22px;
 }
