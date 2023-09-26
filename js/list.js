@@ -5,10 +5,13 @@
 class List {
     constructor(name) {
         this.name = name;
+
         this.tasks = [];
         this.tasksDOM = [];
+
         this.filteringTasks = false;
         this.orderingTasksByDueDate = false;
+        
         this.localStorageKey = `todo-app-tasks-${this.name}`;
 
         this.initDOM();
@@ -87,16 +90,9 @@ class List {
     bindEventListeners() {
         this.deleteButton.addEventListener('click', () => this.drop());
         this.saveAsCSVButton.addEventListener('click', () => this.saveAsCSV());
+        this.loadCSVButton.addEventListener('click', () => showCSVForm());
         this.filterButton.addEventListener('click', () => this.toggleTaskFiltering());
-
-        // TODO: open form
-        this.addNewTaskButton.addEventListener('click', () => {
-            // TODO: Get data from form
-            this.addTask('test', '2023-09-08', 'lorem ipsum');
-            this.addTask('test', '2023-07-23', 'lorem ipsum');
-            this.addTask('test', '2023-10-15', 'lorem ipsum');
-        });
-
+        this.addNewTaskButton.addEventListener('click', () => showTaskForm());
         this.orderByDueDateButton.addEventListener('click', () => this.orderByDueDate());
     }
 

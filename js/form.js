@@ -23,9 +23,15 @@ function showTaskForm() {
     const taskNameInput = document.getElementsByName('task-name-input')[0];
     taskNameInput.placeholder = getRandomTaskName();
 
+    console.log('showing task form');
+
     // create task from selected list
 
     // hide task form when confirmed task creation
+}
+
+function showCSVForm() {
+    console.log('showing CSV form');
 }
 
 /**
