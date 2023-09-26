@@ -67,6 +67,12 @@ button {
     font-size: 32px;
 }
 
+.list-header-button-parent {
+    display: flex;
+    vertical-align: center;
+    justify-content: space-around;
+}
+
 .task {
     margin-top: 15px;
     margin-bottom: 15px;
@@ -105,12 +111,26 @@ button {
 .list-header-delete-button,
 .list-header-load-as-csv-button,
 .list-header-filter-button,
-.list-header-new-task-button {
-    width: 38px;
-    height: 38px;
+.list-header-new-task-button,
+.list-header-filter-due-date-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    border: solid 2px grey;
+    padding: 6px;
 }
 
 .task-delete-button {
     width: 22px;
     height: 22px;
+}
+
+.list-header-button-active {
+    background-color: grey;
+}
+
+.task-done {
+    background-color: rgb(219, 219, 219);
+    font-style: italic;
+    text-decoration: line-through;
 }
