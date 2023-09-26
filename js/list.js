@@ -5,7 +5,7 @@
 class List {
     constructor(name) {
         this.name = name;
-        this.taskObjects = [];
+        this.tasks = [];
         this.tasksDOM = [];
         this.filteringTasks = false;
         this.orderingTasksByDueDate = false;
@@ -21,148 +21,150 @@ class List {
      * Initialize the DOM element related to the list.
      */
     initDOM() {
-        this.holder = document.getElementById('list-container');
+        this.container = document.getElementById('list-container');
 
-        this.domParent = document.createElement('div');
-        this.domHeader = document.createElement('div');
-        this.domName = document.createElement('h2');
-        this.domButtonParent = document.createElement('div');
-        this.domDelete = document.createElement('input');
-        this.domSaveCSV = document.createElement('input');
-        this.domLoadCSV = document.createElement('input');
-        this.domFilter = document.createElement('input');
-        this.domNewTask = document.createElement('input');
-        this.domFilterDate = document.createElement('input');
+        this.holder = document.createElement('div');
+        this.header = document.createElement('div');
+        this.headerName = document.createElement('h2');
+        this.buttonHolder = document.createElement('div');
+        this.deleteButton = document.createElement('input');
+        this.saveAsCSVButton = document.createElement('input');
+        this.loadCSVButton = document.createElement('input');
+        this.filterButton = document.createElement('input');
+        this.addNewTaskButton = document.createElement('input');
+        this.orderByDueDateButton = document.createElement('input');
 
-        this.domParent.className = 'list';
-        this.domHeader.className = 'list-header';
-        this.domName.className = 'list-header-name';
-        this.domButtonParent.className = 'list-header-button-parent'
-        this.domDelete.className = 'list-header-delete-button';
-        this.domSaveCSV.className = 'list-header-save-as-csv-button';
-        this.domLoadCSV.className = 'list-header-load-as-csv-button';
-        this.domFilter.className = 'list-header-filter-button';
-        this.domNewTask.className = 'list-header-new-task-button';
-        this.domFilterDate.className = 'list-header-filter-due-date-button';
+        this.holder.className = 'list';
+        this.header.className = 'list-header';
+        this.headerName.className = 'list-header-name';
+        this.buttonHolder.className = 'list-header-buttons-holder';
+        this.deleteButton.className = 'list-header-delete-button';
+        this.saveAsCSVButton.className = 'list-header-save-as-csv-button';
+        this.loadCSVButton.className = 'list-header-load-as-csv-button';
+        this.filterButton.className = 'list-header-filter-button';
+        this.addNewTaskButton.className = 'list-header-new-task-button';
+        this.orderByDueDateButton.className = 'list-header-order-by-due-date-button';
 
-        this.domDelete.type = 'image';
-        this.domSaveCSV.type = 'image';
-        this.domLoadCSV.type = 'image';
-        this.domFilter.type = 'image';
-        this.domNewTask.type = 'image';
-        this.domFilter.type = 'image';
-        this.domFilterDate.type = 'image';
+        this.deleteButton.type = 'image';
+        this.saveAsCSVButton.type = 'image';
+        this.loadCSVButton.type = 'image';
+        this.filterButton.type = 'image';
+        this.addNewTaskButton.type = 'image';
+        this.filterButton.type = 'image';
+        this.orderByDueDateButton.type = 'image';
 
-        this.domDelete.alt = 'Delete list button';
-        this.domSaveCSV.alt = 'Save list as CSV button';
-        this.domLoadCSV.alt = 'Load list as CSV button';
-        this.domFilter.alt = 'Filter tasks';
-        this.domNewTask.alt = 'Add new task';
-        this.domFilterDate.alt = 'Filter by due date';
+        this.deleteButton.alt = 'Delete list button';
+        this.saveAsCSVButton.alt = 'Save list as CSV button';
+        this.loadCSVButton.alt = 'Load list as CSV button';
+        this.filterButton.alt = 'Filter tasks';
+        this.addNewTaskButton.alt = 'Add new task';
+        this.orderByDueDateButton.alt = 'Filter by due date';
 
-        this.domDelete.src = '../images/close.svg';
-        this.domSaveCSV.src = '../images/download.svg';
-        this.domLoadCSV.src = '../images/upload.svg';
-        this.domFilter.src = '../images/filter.svg';
-        this.domNewTask.src = '../images/add.svg';
-        this.domFilterDate.src = '../images/calendar.svg';
+        this.deleteButton.src = '../images/close.svg';
+        this.saveAsCSVButton.src = '../images/download.svg';
+        this.loadCSVButton.src = '../images/upload.svg';
+        this.filterButton.src = '../images/filter.svg';
+        this.addNewTaskButton.src = '../images/add.svg';
+        this.orderByDueDateButton.src = '../images/calendar.svg';
 
-        this.domName.innerHTML = this.name;
+        this.headerName.innerHTML = this.name;
 
-        this.domHeader.appendChild(this.domName);
-        this.domButtonParent.appendChild(this.domDelete);
-        this.domButtonParent.appendChild(this.domSaveCSV);
-        this.domButtonParent.appendChild(this.domLoadCSV);
-        this.domButtonParent.appendChild(this.domFilter);
-        this.domButtonParent.appendChild(this.domNewTask);
-        this.domButtonParent.appendChild(this.domFilterDate);
-        this.domHeader.appendChild(this.domButtonParent);
-        this.domParent.appendChild(this.domHeader);
-        this.holder.appendChild(this.domParent);
+        this.header.appendChild(this.headerName);
+        this.buttonHolder.appendChild(this.deleteButton);
+        this.buttonHolder.appendChild(this.saveAsCSVButton);
+        this.buttonHolder.appendChild(this.loadCSVButton);
+        this.buttonHolder.appendChild(this.filterButton);
+        this.buttonHolder.appendChild(this.addNewTaskButton);
+        this.buttonHolder.appendChild(this.orderByDueDateButton);
+        this.header.appendChild(this.buttonHolder);
+        this.holder.appendChild(this.header);
+        this.container.appendChild(this.holder);
     }
 
     /**
      * Add event listeners to the list header buttons.
      */
     bindEventListeners() {
-        this.domDelete.addEventListener('click', () => this.drop());
-        this.domSaveCSV.addEventListener('click', () => this.saveAsCSV());
-        this.domFilter.addEventListener('click', () => this.toggleTaskFiltering());
+        this.deleteButton.addEventListener('click', () => this.drop());
+        this.saveAsCSVButton.addEventListener('click', () => this.saveAsCSV());
+        this.filterButton.addEventListener('click', () => this.toggleTaskFiltering());
 
         // TODO: open form
-        this.domNewTask.addEventListener('click', () => {
+        this.addNewTaskButton.addEventListener('click', () => {
             // TODO: Get data from form
             this.addTask('test', '2023-09-08', 'lorem ipsum');
             this.addTask('test', '2023-07-23', 'lorem ipsum');
             this.addTask('test', '2023-10-15', 'lorem ipsum');
         });
 
-        this.domFilterDate.addEventListener('click', () => this.orderByDueDate());
+        this.orderByDueDateButton.addEventListener('click', () => this.orderByDueDate());
     }
 
     /**
      * Render the list and its tasks.
      */
     render() {
-        this.taskObjects.forEach((task, index) => {
+        this.tasks.forEach((task, index) => {
             this.renderTask(task, index);
         });
     }
 
     /**
-     * Renders a single task object. 
+     * Renders a single task object.
+     * @param {Task} task 
+     * @param {Number} index 
      */
     renderTask(task, index) {
-        const domHolder = document.createElement('div');
-        const domName = document.createElement('h2');
-        const domDate = document.createElement('h3');
-        const domContent = document.createElement('h3');
-        const domDelete = document.createElement('input');
-        const domToggle = document.createElement('input');
+        const holder = document.createElement('div');
+        const name = document.createElement('h2');
+        const date = document.createElement('h3');
+        const content = document.createElement('h3');
+        const deleteButton = document.createElement('input');
+        const toggleCheckbox = document.createElement('input');
 
-        domToggle.checked = task.done;
+        toggleCheckbox.checked = task.done;
 
-        domToggle.addEventListener('change', () => {
-            task.done = domToggle.checked;
+        toggleCheckbox.addEventListener('change', () => {
+            task.done = toggleCheckbox.checked;
             if (task.done) {
-                domHolder.classList.add('task-done');
+                holder.classList.add('task-done');
             } else {
-                domHolder.classList.remove('task-done');
+                holder.classList.remove('task-done');
             }
             this.saveInLocalStorage();
         });
 
-        domDelete.addEventListener('click', () => {
+        deleteButton.addEventListener('click', () => {
             this.removeTask(index);
             this.saveInLocalStorage();
         });
 
-        domHolder.className = 'task';
-        domName.className = 'task-name';
-        domDate.className = 'task-date';
-        domContent.className = 'task-content';
-        domDelete.className = 'task-delete-button';
-        domToggle.className = 'task-toggle-status';
+        holder.className = 'task';
+        name.className = 'task-name';
+        date.className = 'task-date';
+        content.className = 'task-content';
+        deleteButton.className = 'task-delete-button';
+        toggleCheckbox.className = 'task-toggle-status';
 
-        domDelete.type = 'image';
-        domDelete.alt = 'Delete task';
-        domDelete.src = '../images/close.svg';
+        deleteButton.type = 'image';
+        deleteButton.alt = 'Delete task';
+        deleteButton.src = '../images/close.svg';
 
-        domToggle.type = 'checkbox';
-        domToggle.alt = 'Toggle task status';
+        toggleCheckbox.type = 'checkbox';
+        toggleCheckbox.alt = 'Toggle task status';
 
-        domName.innerHTML = task.name;
-        domDate.innerHTML = task.date;
-        domContent.innerHTML = task.content;
+        name.innerHTML = task.name;
+        date.innerHTML = task.date;
+        content.innerHTML = task.content;
 
-        domHolder.appendChild(domName);
-        domHolder.appendChild(domDate);
-        domHolder.appendChild(domContent);
-        domHolder.appendChild(domDelete);
-        domHolder.appendChild(domToggle);
-        this.domParent.appendChild(domHolder);
+        holder.appendChild(name);
+        holder.appendChild(date);
+        holder.appendChild(content);
+        holder.appendChild(deleteButton);
+        holder.appendChild(toggleCheckbox);
+        this.holder.appendChild(holder);
 
-        this.tasksDOM.push(domHolder);
+        this.tasksDOM.push(holder);
     }
 
     /**
@@ -170,7 +172,7 @@ class List {
      */
     clearTaskDOM() {
         this.tasksDOM.forEach((taskDom) => {
-            this.domParent.removeChild(taskDom);
+            this.holder.removeChild(taskDom);
         });
     
         this.tasksDOM = [];
@@ -179,10 +181,14 @@ class List {
     /**
      * Creates a new task in the list. The task is immediatly
      * added to the list. Note that ``task.done`` is set to false.
+     * @param {String} name 
+     * @param {String} date 
+     * @param {String} content 
+     * @param {Boolean} done 
      */
     addTask(name, date, content, done = false) {
         const task = new Task(name, date, content, done);
-        this.taskObjects.push(task);
+        this.tasks.push(task);
 
         this.clearTaskDOM();
         this.saveInLocalStorage();
@@ -191,14 +197,15 @@ class List {
 
     /**
      * Removes the task located at index `taskIndex` in the list.
+     * @param {Number} taskIndex target index in the list of the task to remove
      */
     removeTask(taskIndex) {
-        if (taskIndex >= 0 && taskIndex < this.taskObjects.length) {
-            this.taskObjects.splice(taskIndex, 1);
+        if (taskIndex >= 0 && taskIndex < this.tasks.length) {
+            this.tasks.splice(taskIndex, 1);
 
             const removedTaskDom = this.tasksDOM.splice(taskIndex, 1)[0];
             if (removedTaskDom) {
-                this.domParent.removeChild(removedTaskDom);
+                this.holder.removeChild(removedTaskDom);
             }
 
             this.saveInLocalStorage();
@@ -208,11 +215,14 @@ class List {
     }
 
     /**
-     * Transfers the task located at taskIndex to the target list
+     *  Transfers the task located at taskIndex to the target list
      * `newList` and at index `newIndex`.
+     * @param {Number} taskIndex the index in the list of the task to be transfered
+     * @param {List} newList new target list where the task should be tranfsered
+     * @param {Number} newIndex new target task index in the targeted list
      */
     transferTask(taskIndex, newList, newIndex) {
-        if (taskIndex >= 0 && taskIndex < this.taskObjects.length 
+        if (taskIndex >= 0 && taskIndex < this.tasks.length 
             && newIndex >= 0 && newIndex < newList.tasks.length) {
             // TODO:
         } else {
@@ -224,9 +234,9 @@ class List {
      * Remove the list from the app board. Data will be lost.
      */
     drop() {
-        this.taskObjects = [];
+        this.tasks = [];
         this.tasksDOM = [];
-        this.domParent.remove();
+        this.holder.remove();
         localStorage.removeItem(this.localStorageKey);
     }
 
@@ -238,16 +248,24 @@ class List {
         this.orderingTasksByDueDate = !this.orderingTasksByDueDate;
 
         if (this.orderingTasksByDueDate) {
-            this.domFilterDate.classList.add(className);
+            this.orderByDueDateButton.classList.add(className);
             
-            this.taskObjects.sort((a, b) => {
-                return new Date(b.date) - new Date(a.date);
+            const sortedTasks = [...this.tasks];
+            sortedTasks.sort((a, b) => {
+                return new Date(a.date) - new Date(b.date);
             });
 
             this.clearTaskDOM();
-            this.render();
+            sortedTasks.forEach((task, index) => {
+                this.renderTask(task, index);
+            });
         } else {
-            this.domFilterDate.classList.remove(className);
+            this.orderByDueDateButton.classList.remove(className);
+
+            this.clearTaskDOM();
+            this.tasks.forEach((task, index) => {
+                this.renderTask(task, index);
+            });
         }
     }
 
@@ -264,7 +282,7 @@ class List {
      * is saved with the following header: `name;date;content;done`.
      */
     saveAsCSV() {
-        if (!this.taskObjects || this.taskObjects.length === 0) {
+        if (!this.tasks || this.tasks.length === 0) {
             alert('No CSV to copy!');
             return;
         }
@@ -272,7 +290,7 @@ class List {
         let outputString = '';
         outputString += 'name;date;content;done\n';
 
-        this.taskObjects.forEach((task) => {
+        this.tasks.forEach((task) => {
             outputString += `${task.name};${task.date};${task.content};${task.done}\n`;
         });
 
@@ -287,6 +305,7 @@ class List {
     /**
      * Loads the tasks from a CSV string buffer. The file should have
      * the following header: `name;date;content;done`.
+     * @param {String} csvBuffer a string buffer of the CSV content.
      */
     loadFromCSV(csvBuffer) {
         const lines = csvBuffer.split('\n');
@@ -303,7 +322,7 @@ class List {
      * Updates or sets the stored task in the browser local storage.
      */
     saveInLocalStorage() {
-        const jsonTasks = JSON.stringify(this.taskObjects);
+        const jsonTasks = JSON.stringify(this.tasks);
         localStorage.setItem(this.localStorageKey, jsonTasks);
     }
     
@@ -315,7 +334,7 @@ class List {
     loadFromLocalStorage() {
         const jsonTasks = localStorage.getItem(this.localStorageKey);
         if (jsonTasks !== null) {
-            this.taskObjects = JSON.parse(jsonTasks);
+            this.tasks = JSON.parse(jsonTasks);
         }
     }
 }

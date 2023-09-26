@@ -67,7 +67,7 @@ button {
     font-size: 32px;
 }
 
-.list-header-button-parent {
+.list-header-buttons-holder {
     display: flex;
     vertical-align: center;
     justify-content: space-around;
@@ -112,7 +112,7 @@ button {
 .list-header-load-as-csv-button,
 .list-header-filter-button,
 .list-header-new-task-button,
-.list-header-filter-due-date-button {
+.list-header-order-by-due-date-button {
     width: 30px;
     height: 30px;
     border-radius: 6px;
