@@ -5,3 +5,5 @@ const fourthList = new List('Trash');
 
 // Implement drag and drop logic here
 // Implement list manager here
+
+let lists = [];

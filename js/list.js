@@ -1,6 +1,6 @@
 /**
- * A list contains the todo tasks. This object has methods
- * do manipulate the tasks contained in this list.
+ * A list contains the todo tasks. This object has methods to 
+ * manipulate the tasks contained in this list.
  */
 class List {
     constructor(name) {
@@ -232,6 +232,8 @@ class List {
         if (taskIndex >= 0 && taskIndex < this.tasks.length 
             && newIndex >= 0 && newIndex < newList.tasks.length) {
             // TODO:
+            this.saveInLocalStorage();
+            this.render();
         } else {
             throw new Error(`Invalid task index ${taskIndex}`);
         }
@@ -256,22 +258,16 @@ class List {
 
         if (this.orderingTasksByDueDate) {
             this.orderByDueDateButton.classList.add(className);
-            
-            const sortedTasks = [...this.tasks];
-            sortedTasks.sort((a, b) => {
-                return new Date(a.date) - new Date(b.date);
-            });
 
-            sortedTasks.forEach((task, index) => {
-                this.renderTask(task, index);
+            this.tasks.sort((a, b) => {
+                return new Date(a.date) - new Date(b.date);
             });
         } else {
             this.orderByDueDateButton.classList.remove(className);
-
-            this.tasks.forEach((task, index) => {
-                this.renderTask(task, index);
-            });
+            this.loadFromLocalStorage();
         }
+
+        this.render();
     }
 
     /**

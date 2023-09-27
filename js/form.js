@@ -1,32 +1,53 @@
+// List creation form
 const listCreationForm = document.getElementById('list-creation-form');
+
+// Task creation form
 const taskCreationForm = document.getElementById('task-creation-form');
-const csvForm = document.getElementById('csv-import-form');
+
+// CSV import form
+const csvImportForm = document.getElementById('csv-import-form');
+const closeCSVImportFormButton = document.getElementById('close-csv-import-form-button');
+const loadCSVImportFormButton = document.getElementById('load-csv-button');
+
+const listContainer = document.getElementById('list-container');
 
 /**
  * Shows the CSV import form.
  */
 function showCSVImportForm() {
-    csvForm.classList.toggle('hidden');
+    listContainer.classList.add('blurred');
+    csvImportForm.classList.remove('hidden');
 }
 
-document.getElementById('load-csv-button').addEventListener('click', () => {
+/**
+ * Hides the CSV import form.
+ */
+function hideCSVImportForm() {
+    listContainer.classList.remove('blurred');
+    csvImportForm.classList.add('hidden');
+}
+
+closeCSVImportFormButton.addEventListener('click', hideCSVImportForm);
+
+loadCSVImportFormButton.addEventListener('click', () => {
     const textArea = document.getElementById('csv-import-form-input-text');
     firstList.loadFromCSV(textArea.value);
+    hideCSVImportForm();
 });
 
-/**
- * Returns a random task based on predefined names.
- */
-function getRandomTaskName() {
-    const possibleNames = [
-        'Do morning exercices',
-        'Prepare healthy breakfast',
-        'Plan my day',
-        'Study computer science',
-        'Water plants',
-        'Go out with my dog'
-    ];
+function showListCreationForm() {
+    // TODO
+}
 
-    const randomIndex = Math.floor(Math.random() * possibleNames.length);
-    return possibleNames[randomIndex];
+function hideListCreationForm() {
+    // TODO
+    // TODO: handle same name for several lists
+}
+
+function showTaskCreationForm() {
+    // TODO
+}
+
+function hideTaskCreationForm() {
+    // TODO
 }

@@ -157,6 +157,7 @@ button {
 }
 
 #csv-import-form {
+    z-index: 1;
     width: 80%;
     height: fit-content;
     max-width: 400px;
@@ -164,7 +165,32 @@ button {
     background-color: #f0f0f0;
     border: 1px solid #ccc;
     border-radius: 10px;
-    margin: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#csv-import-form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#close-csv-import-form-button {
+    background-color: rgb(219, 219, 219);
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    width: 20px;
+    height: 20px;
 }
 
 #csv-import-form-input-text {
@@ -174,12 +200,39 @@ button {
     border-radius: 5px;
     margin: auto;
     height: 40vh;
+    resize: none;
 }
 
 #load-csv-button {
     margin-top: 12px;
+    width: 100%;
+    color: black;
+}
+
+.csv-import-form-rules {
+    border: 2px solid rgba(255, 166, 0, 0.4);
+    border-radius: 16px;
+    background-color: rgba(255, 255, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 18px;
+}
+
+.csv-import-form-rule-text {
+    width: 80%;
+    margin: 10px;
+}
+
+.form-rules-warning-sign {
+    width: 40px;
+    height: 40px;
 }
 
 .hidden {
     display: none;
+}
+
+.blurred {
+    filter: blur(4px); 
 }
