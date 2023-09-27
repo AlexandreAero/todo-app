@@ -9,10 +9,10 @@ class List {
         this.tasks = [];
         this.tasksDOM = [];
 
-        this.filteringTasks = false;
         this.orderingTasksByDueDate = false;
 
         this.localStorageKey = `todo-app-tasks-${this.name}`;
+        this.filteringState = 'none';
 
         this.initDOM();
         this.loadFromLocalStorage();
@@ -100,8 +100,16 @@ class List {
      * Render the list and its tasks.
      */
     render() {
+        this.clearTaskDOM();
+
         this.tasks.forEach((task, index) => {
-            this.renderTask(task, index);
+            if (
+                (this.filteringState === 'doneonly' && task.done) ||
+                (this.filteringState === 'undoneonly' && !task.done) ||
+                this.filteringState === 'none'
+            ) {
+                this.renderTask(task, index);
+            }
         });
     }
 
@@ -128,8 +136,6 @@ class List {
         const content = document.createElement('h3');
         const deleteButton = document.createElement('input');
         const toggleCheckbox = document.createElement('input');
-
-        toggleCheckbox.checked = task.done;
 
         toggleCheckbox.addEventListener('change', () => {
             task.done = toggleCheckbox.checked;
@@ -172,6 +178,11 @@ class List {
         this.holder.appendChild(holder);
 
         this.tasksDOM.push(holder);
+
+        if (task.done) {
+            toggleCheckbox.checked = true;
+            holder.classList.add('task-done');
+        }
     }
 
     /**
@@ -186,7 +197,6 @@ class List {
         const task = new Task(name, date, content, done);
         this.tasks.push(task);
 
-        this.clearTaskDOM();
         this.saveInLocalStorage();
         this.render();
     }
@@ -204,7 +214,6 @@ class List {
                 this.holder.removeChild(removedTaskDom);
             }
 
-            this.clearTaskDOM();
             this.saveInLocalStorage();
             this.render();
         } else {
@@ -253,14 +262,12 @@ class List {
                 return new Date(a.date) - new Date(b.date);
             });
 
-            this.clearTaskDOM();
             sortedTasks.forEach((task, index) => {
                 this.renderTask(task, index);
             });
         } else {
             this.orderByDueDateButton.classList.remove(className);
 
-            this.clearTaskDOM();
             this.tasks.forEach((task, index) => {
                 this.renderTask(task, index);
             });
@@ -271,8 +278,24 @@ class List {
      * Toggle visibility between done and undone tasks.
      */
     toggleTaskFiltering() {
-        this.filteringTasks = !this.filteringTasks;
-        // TODO:
+        // Three possible states: 'none', 'doneonly', 'undoneonly'
+        switch (this.filteringState) {
+            case 'none':
+                this.filteringState = 'doneonly';
+                this.filterButton.classList.add('list-header-button-active');
+                break;
+            case 'doneonly':
+                this.filteringState = 'undoneonly';
+                break;
+            case 'undoneonly':
+                this.filteringState = 'none';
+                this.filterButton.classList.remove('list-header-button-active');
+                break;
+            default:
+                throw new Error('Invalid filtering state');
+        }
+
+        this.render();
     }
 
     /**
@@ -285,8 +308,7 @@ class List {
             return;
         }
 
-        let outputString = '';
-        outputString += 'name;date;content;done\n';
+        let outputString = 'name;date;content;done\n';
 
         this.tasks.forEach((task) => {
             outputString += `${task.name};${task.date};${task.content};${task.done}\n`;
@@ -307,13 +329,11 @@ class List {
      */
     loadFromCSV(csvBuffer) {
         const lines = csvBuffer.trim().split('\n');
-
         if (lines.length === 0) {
             throw new Error('CSV buffer is empty');
         }
 
         const header = lines[0].split(';');
-
         if (header.length !== 4) {
             throw new Error('CSV header is invalid');
         }
