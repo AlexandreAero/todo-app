@@ -26,13 +26,13 @@
         <div id="csv-import-form" class="hidden">
             <div id="csv-import-form-header">
                 <h3 class="csv-import-form-header-text">Import CSV</h3>
-                <input type="image" src="./images/close.svg" id="close-csv-import-form-button"></input>
+                <input id="close-csv-import-form-button" type="image" src="./images/close.svg"></input>
             </div>
             <div class="csv-import-form-rules">
                 <img class="form-rules-warning-sign" src="./images/warning.svg">
                 <h4 class="csv-import-form-rule-text">The CSV must have the following header: name;date;content;done</h4>
             </div>
-            <textarea name="CSV import text area" id="csv-import-form-input-text" placeholder="Enter CSV here..." spellcheck="false"></textarea>
+            <textarea id="csv-import-form-input-text" name="CSV import text area" placeholder="Enter CSV here..." spellcheck="false"></textarea>
             <button id="load-csv-button">Confirm</button>
         </div>
         <div id="list-container">
@@ -44,6 +44,7 @@
         <script type="text/javascript" src="./js/task.js"></script>
         <script type="text/javascript" src="./js/list.js"></script>
         <script type="text/javascript" src="./js/form.js"></script>
+        <script type="text/javascript" src="./js/dragNDrop.js"></script>
         <script type="text/javascript" src="./index.js"></script>
     </body>
 </html>

@@ -88,7 +88,7 @@ class List {
      * Add event listeners to the list header buttons.
      */
     bindEventListeners() {
-        this.deleteButton.addEventListener('click', () => this.drop());
+        this.deleteButton.addEventListener('click', () => this.delete());
         this.saveAsCSVButton.addEventListener('click', () => this.saveAsCSV());
         this.loadCSVButton.addEventListener('click', () => showCSVImportForm());
         this.filterButton.addEventListener('click', () => this.toggleTaskFiltering());
@@ -170,6 +170,8 @@ class List {
         date.innerHTML = task.date;
         content.innerHTML = task.content;
 
+        holder.draggable = true;
+
         holder.appendChild(name);
         holder.appendChild(date);
         holder.appendChild(content);
@@ -210,6 +212,7 @@ class List {
             this.tasks.splice(taskIndex, 1);
 
             const removedTaskDom = this.tasksDOM.splice(taskIndex, 1)[0];
+            
             if (removedTaskDom) {
                 this.holder.removeChild(removedTaskDom);
             }
@@ -230,8 +233,9 @@ class List {
      */
     transferTask(taskIndex, newList, newIndex) {
         if (taskIndex >= 0 && taskIndex < this.tasks.length 
-            && newIndex >= 0 && newIndex < newList.tasks.length) {
+            && newIndex >= 0 && newIndex <= newList.tasks.length) {
             // TODO:
+            
             this.saveInLocalStorage();
             this.render();
         } else {
@@ -242,7 +246,7 @@ class List {
     /**
      * Remove the list from the app board. Data will be lost.
      */
-    drop() {
+    delete() {
         this.tasks = [];
         this.tasksDOM = [];
         this.holder.remove();
@@ -274,18 +278,20 @@ class List {
      * Toggle visibility between done and undone tasks.
      */
     toggleTaskFiltering() {
-        // Three possible states: 'none', 'doneonly', 'undoneonly'
+        const className = 'list-header-button-active';
+
+        // Three possible states: 'none', 'doneonly' and 'undoneonly'
         switch (this.filteringState) {
             case 'none':
                 this.filteringState = 'doneonly';
-                this.filterButton.classList.add('list-header-button-active');
+                this.filterButton.classList.add(className);
                 break;
             case 'doneonly':
                 this.filteringState = 'undoneonly';
                 break;
             case 'undoneonly':
                 this.filteringState = 'none';
-                this.filterButton.classList.remove('list-header-button-active');
+                this.filterButton.classList.remove(className);
                 break;
             default:
                 throw new Error('Invalid filtering state');
@@ -295,8 +301,8 @@ class List {
     }
 
     /**
-     * Outputs a file containing the tasks formatted as CSV. The file
-     * is saved with the following header: `name;date;content;done`.
+     * Outputs a string containing the tasks formatted as CSV. The CSV
+     * is shown with the following header: `name;date;content;done`.
      */
     saveAsCSV() {
         if (!this.tasks || this.tasks.length === 0) {

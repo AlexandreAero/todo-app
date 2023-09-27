@@ -134,11 +134,19 @@ button {
 .list-header-filter-button,
 .list-header-new-task-button,
 .list-header-order-by-due-date-button {
+    background-color: rgb(219, 219, 219);
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
     width: 30px;
     height: 30px;
-    border-radius: 6px;
-    border: solid 2px grey;
-    padding: 6px;
 }
 
 .task-delete-button {
@@ -235,4 +243,8 @@ button {
 
 .blurred {
     filter: blur(4px); 
+}
+
+.task-dragging {
+    transform: rotateZ(5deg);
 }
