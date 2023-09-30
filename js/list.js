@@ -24,9 +24,9 @@ class List {
      * Initialize the DOM element related to the list.
      */
     initDOM() {
-        this.container = document.getElementById('list-container');
+        this.listContainer = document.getElementById('list-container');
 
-        this.holder = document.createElement('div');
+        this.parent = document.createElement('div');
         this.header = document.createElement('div');
         this.headerName = document.createElement('h2');
         this.buttonHolder = document.createElement('div');
@@ -37,7 +37,7 @@ class List {
         this.addNewTaskButton = document.createElement('input');
         this.orderByDueDateButton = document.createElement('input');
 
-        this.holder.className = 'list';
+        this.parent.className = 'list';
         this.header.className = 'list-header';
         this.headerName.className = 'list-header-name';
         this.buttonHolder.className = 'list-header-buttons-holder';
@@ -80,8 +80,8 @@ class List {
         this.buttonHolder.appendChild(this.addNewTaskButton);
         this.buttonHolder.appendChild(this.orderByDueDateButton);
         this.header.appendChild(this.buttonHolder);
-        this.holder.appendChild(this.header);
-        this.container.appendChild(this.holder);
+        this.parent.appendChild(this.header);
+        this.listContainer.appendChild(this.parent);
     }
 
     /**
@@ -118,7 +118,7 @@ class List {
      */
     clearTaskDOM() {
         this.tasksDOM.forEach((taskDom) => {
-            this.holder.removeChild(taskDom);
+            this.parent.removeChild(taskDom);
         });
         
         this.tasksDOM = [];
@@ -177,7 +177,7 @@ class List {
         holder.appendChild(content);
         holder.appendChild(deleteButton);
         holder.appendChild(toggleCheckbox);
-        this.holder.appendChild(holder);
+        this.parent.appendChild(holder);
 
         this.tasksDOM.push(holder);
 
@@ -214,7 +214,7 @@ class List {
             const removedTaskDom = this.tasksDOM.splice(taskIndex, 1)[0];
             
             if (removedTaskDom) {
-                this.holder.removeChild(removedTaskDom);
+                this.parent.removeChild(removedTaskDom);
             }
 
             this.saveInLocalStorage();
@@ -249,7 +249,7 @@ class List {
     delete() {
         this.tasks = [];
         this.tasksDOM = [];
-        this.holder.remove();
+        this.parent.remove();
         localStorage.removeItem(this.localStorageKey);
     }
 

@@ -1,16 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+:root {
+    --default-grey-color: rgb(219, 219, 219);
+    --button-box-shadow-color: rgba(0, 0, 0, 0.15);
+}
+
 body {
     margin: 0;
     padding: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4 {
     font-family: 'Roboto', sans-serif;
 }
 
 button {
-    background-color: rgb(219, 219, 219);
+    background-color: var(--default-grey-color);
     border: none;
     color: white;
     padding: 15px 32px;
@@ -20,35 +25,28 @@ button {
     font-size: 16px;
     border-radius: 10px;
     cursor: pointer;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
-}
-
-#create-new-list-button {
-    vertical-align: top;
-    height: 300px;
-    width: 30%;
-    border-radius: 12px;
-    padding: 16px;
-    background-color: rgb(219, 219, 219);
-    float: none;
-    display: inline-block;
-    zoom: 1;
-    margin: 0 0.65%;
+    box-shadow: 0px 5px 15px var(--button-box-shadow-color);
 }
 
 .application-header {
-    background-color: rgb(219, 219, 219);
-    height: 50px;
+    background-color: var(--default-grey-color);
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.application-name {
-    text-align: center;
+.application-logo {
     margin: 0;
 }
 
-#open-list-form-button {
-    display: block;
-    margin: 0px auto;
+#application-settings-button {
+    width: 32px;
+    height: 32px;
+    background-color: var(--default-grey-color);
+    box-shadow: 0px 5px 15px var(--button-box-shadow-color);
+    border-radius: 10px;
+    padding: 6px 6px;
 }
 
 #list-creation-form,
@@ -57,17 +55,30 @@ button {
     height: fit-content;
     width: 35%;
     border-radius: 20px;
-    background-color: rgb(219, 219, 219);
+    background-color: var(--default-grey-color);
     margin: 10px auto;
     display: none;
 }
 
 #list-container {
-    padding: 20px; /* or margin top */
+    padding: 20px;
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
     height: 100vh;
+}
+
+#create-new-list-button {
+    vertical-align: top;
+    height: 100%;
+    width: 10%;
+    border-radius: 12px;
+    padding: 16px;
+    background-color: var(--default-grey-color);
+    float: none;
+    display: inline-block;
+    zoom: 1;
+    margin: 0 0.65%;
 }
 
 .list {
@@ -76,7 +87,7 @@ button {
     width: 30%;
     border-radius: 12px;
     padding: 16px;
-    background-color: rgb(219, 219, 219);
+    background-color: var(--default-grey-color);
     float: none;
     display: inline-block;
     zoom: 1;
@@ -99,7 +110,7 @@ button {
     border-radius: 6px;
     padding: 16px;
     background-color: white;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 5px 15px var(--button-box-shadow-color);
     overflow-wrap: break-word;
 }
 
@@ -134,7 +145,7 @@ button {
 .list-header-filter-button,
 .list-header-new-task-button,
 .list-header-order-by-due-date-button {
-    background-color: rgb(219, 219, 219);
+    background-color: var(--default-grey-color);
     border: none;
     color: white;
     padding: 10px 10px;
@@ -144,7 +155,7 @@ button {
     font-size: 16px;
     border-radius: 10px;
     cursor: pointer;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 5px 15px var(--button-box-shadow-color);
     width: 30px;
     height: 30px;
 }
@@ -152,16 +163,6 @@ button {
 .task-delete-button {
     width: 22px;
     height: 22px;
-}
-
-.list-header-button-active {
-    background-color: grey;
-}
-
-.task-done {
-    background-color: rgb(219, 219, 219);
-    font-style: italic;
-    text-decoration: line-through;
 }
 
 #csv-import-form {
@@ -186,7 +187,7 @@ button {
 }
 
 #close-csv-import-form-button {
-    background-color: rgb(219, 219, 219);
+    background-color: var(--default-grey-color);
     border: none;
     color: white;
     padding: 10px 10px;
@@ -196,7 +197,7 @@ button {
     font-size: 16px;
     border-radius: 10px;
     cursor: pointer;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 5px 15px var(--button-box-shadow-color);
     width: 20px;
     height: 20px;
 }
@@ -237,6 +238,69 @@ button {
     height: 40px;
 }
 
+#task-detail {
+    z-index: 1;
+    width: 80%;
+    height: fit-content;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#settings {
+    z-index: 1;
+    width: 80%;
+    height: fit-content;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#board-bg-color-palette {
+    display: flex;
+    justify-content: space-between;
+}
+
+#board-bg-color-palette div {
+    width: 60px;
+    height: 40px;
+    border-radius: 8px;
+}
+
+.board-bg-white {
+    background-color: white;
+}
+
+.board-bg-blue {
+    background-color: blue;
+}
+
+.board-bg-green {
+    background-color: green;
+}
+
+.board-bg-red {
+    background-color: red;
+}
+
+.board-bg-purple {
+    background-color: purple;
+}
+
+/* Dynamic classes */
+
 .hidden {
     display: none;
 }
@@ -247,4 +311,18 @@ button {
 
 .task-dragging {
     transform: rotateZ(5deg);
+}
+
+.selected-board-bg-color {
+    border: 3px solid black;
+}
+
+.list-header-button-active {
+    background-color: grey;
+}
+
+.task-done {
+    background-color: var(--default-grey-color);
+    font-style: italic;
+    text-decoration: line-through;
 }
