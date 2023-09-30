@@ -1,0 +1,370 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+:root {
+    --default-grey-color: rgb(219, 219, 219);
+    --button-box-shadow-color: rgba(0, 0, 0, 0.15);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Roboto', sans-serif;
+}
+
+button {
+    background-color: var(--default-grey-color);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: black;
+    box-shadow: 0px 5px 15px var(--button-box-shadow-color);
+}
+
+.application-header {
+    background-color: var(--default-grey-color);
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.application-logo {
+    margin: 0;
+}
+
+#application-settings-button {
+    width: 32px;
+    height: 32px;
+    background-color: var(--default-grey-color);
+    box-shadow: 0px 5px 15px var(--button-box-shadow-color);
+    border-radius: 10px;
+    padding: 6px 6px;
+}
+
+#list-creation-form,
+#task-creation-form {
+    padding: 18px;
+    height: fit-content;
+    width: 35%;
+    border-radius: 20px;
+    background-color: var(--default-grey-color);
+    margin: 10px auto;
+    display: none;
+}
+
+#list-container {
+    padding: 20px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    height: 100vh;
+}
+
+#create-new-list-button {
+    vertical-align: top;
+    height: 100%;
+    width: 10%;
+    border-radius: 12px;
+    padding: 16px;
+    background-color: var(--default-grey-color);
+    float: none;
+    display: inline-block;
+    zoom: 1;
+    margin: 0 0.65%;
+}
+
+.list {
+    vertical-align: top;
+    height: fit-content;
+    width: 30%;
+    border-radius: 12px;
+    padding: 16px;
+    background-color: var(--default-grey-color);
+    float: none;
+    display: inline-block;
+    zoom: 1;
+    margin: 0 0.65%;
+}
+
+.list-header-name {
+    font-size: 28px;
+}
+
+.list-header-buttons-holder {
+    display: flex;
+    vertical-align: center;
+    justify-content: space-around;
+}
+
+.task {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    padding: 16px;
+    background-color: white;
+    box-shadow: 0px 5px 15px var(--button-box-shadow-color);
+    overflow-wrap: break-word;
+}
+
+.task:hover {
+    cursor: move;
+}
+
+.task-name,
+.task-date,
+.task-content {
+    margin: 0;
+}
+
+.task-name {
+    color: red;
+    margin-left: 6px;
+}
+
+.task-date,
+.task-content {
+    margin-left: 6px;
+}
+
+.task-content {
+    word-wrap: break-all;
+    white-space: normal;
+}
+
+.list-header-save-as-csv-button,
+.list-header-delete-button,
+.list-header-load-as-csv-button,
+.list-header-filter-button,
+.list-header-new-task-button,
+.list-header-order-by-due-date-button {
+    background-color: var(--default-grey-color);
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0px 5px 15px var(--button-box-shadow-color);
+    width: 30px;
+    height: 30px;
+}
+
+.task-delete-button {
+    width: 22px;
+    height: 22px;
+}
+
+#csv-import-form {
+    z-index: 1;
+    width: 80%;
+    height: fit-content;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#csv-import-form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#close-csv-import-form-button {
+    background-color: var(--default-grey-color);
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0px 5px 15px var(--button-box-shadow-color);
+    width: 20px;
+    height: 20px;
+}
+
+#csv-import-form-input-text {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: auto;
+    height: 40vh;
+    resize: none;
+}
+
+#load-csv-button {
+    margin-top: 12px;
+    width: 100%;
+    color: black;
+}
+
+.csv-import-form-rules {
+    border: 2px solid rgba(255, 166, 0, 0.4);
+    border-radius: 16px;
+    background-color: rgba(255, 255, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 18px;
+}
+
+.csv-import-form-rule-text {
+    width: 80%;
+    margin: 10px;
+}
+
+.form-rules-warning-sign {
+    width: 40px;
+    height: 40px;
+}
+
+#task-detail {
+    z-index: 1;
+    width: 80%;
+    height: fit-content;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#save-task-button {
+    margin-top: 12px;
+    background-color: green;
+    color: white;
+}
+
+#task-detail-content {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: auto;
+    height: fit-content;
+    resize: none;
+}
+
+#settings {
+    z-index: 1;
+    width: 80%;
+    height: fit-content;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#board-bg-color-palette {
+    display: flex;
+    justify-content: space-between;
+}
+
+#board-bg-color-palette div {
+    width: 60px;
+    height: 40px;
+    border-radius: 8px;
+}
+
+.board-bg-white {
+    background-color: white;
+}
+
+.board-bg-blue {
+    background-color: blue;
+}
+
+.board-bg-green {
+    background-color: green;
+}
+
+.board-bg-red {
+    background-color: red;
+}
+
+.board-bg-purple {
+    background-color: purple;
+}
+
+/* Dynamic classes */
+
+.hidden {
+    display: none;
+}
+
+.blurred {
+    filter: blur(4px); 
+}
+
+.task-dragging {
+    transform: rotateZ(5deg);
+}
+
+.selected-board-bg-color {
+    border: 3px solid black;
+}
+
+.list-header-button-active {
+    background-color: grey;
+}
+
+.task-done {
+    background-color: var(--default-grey-color);
+    font-style: italic;
+    text-decoration: line-through;
+}
+
+/* Responsivness */
+
+@media only screen and (max-width : 600px) {
+    .application-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #create-new-list-button {
+        display: none;
+    }
+
+    #list-container {
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+
+    .list {
+        display: block;
+        width: 90%;
+        margin-bottom: 1rem;
+    }
+}
