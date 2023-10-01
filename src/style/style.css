@@ -1,8 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
 
 :root {
-    --default-grey-color: rgb(219, 219, 219);
-    --button-box-shadow-color: rgba(0, 0, 0, 0.15);
+    --button-box-shadow-color: rgba(0, 0, 0, 0.1);
+    --button-list-header-background-color: purple;
+
+    --list-background-color: rgb(231, 231, 231);
+    
+    --application-header-background-color: #1a7197;
+    --application-header-button-background-color: rgba(255, 255, 255, 0.3);
 }
 
 body {
@@ -30,24 +36,35 @@ button {
 }
 
 .application-header {
-    background-color: var(--default-grey-color);
+    background-color: var(--application-header-background-color);
     height: 55px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 .application-logo {
     margin: 0;
+    margin-right: 60%;
+    color: white;
+    font-family: 'Gochi Hand', cursive;
 }
 
-#application-settings-button {
-    width: 32px;
-    height: 32px;
-    background-color: var(--default-grey-color);
+#application-settings-button,
+#application-info-button {
+    width: 25px;
+    height: 25px;
+    background-color: var(--application-header-button-background-color);
     box-shadow: 0px 5px 15px var(--button-box-shadow-color);
-    border-radius: 10px;
-    padding: 6px 6px;
+    border-radius: 6px;
+    padding: 10px 10px;
+}
+
+.profile-picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
 }
 
 #list-creation-form,
@@ -75,7 +92,7 @@ button {
     width: 10%;
     border-radius: 12px;
     padding: 16px;
-    background-color: var(--default-grey-color);
+    background-color: var(--list-background-color);
     float: none;
     display: inline-block;
     zoom: 1;
@@ -86,9 +103,9 @@ button {
     vertical-align: top;
     height: fit-content;
     width: 30%;
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 16px;
-    background-color: var(--default-grey-color);
+    background-color: var(--list-background-color);
     float: none;
     display: inline-block;
     zoom: 1;
@@ -96,7 +113,9 @@ button {
 }
 
 .list-header-name {
-    font-size: 28px;
+    margin-top: 0px;
+    margin-bottom: 12px;
+    font-size: 24px;
 }
 
 .list-header-buttons-holder {
@@ -146,15 +165,14 @@ button {
 .list-header-filter-button,
 .list-header-new-task-button,
 .list-header-order-by-due-date-button {
-    background-color: var(--default-grey-color);
-    border: none;
-    color: white;
+    border-style: dashed;
+    border-color: grey;
     padding: 10px 10px;
     text-align: center;
     text-decoration: none;
     text-align: center;
     font-size: 16px;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
     box-shadow: 0px 5px 15px var(--button-box-shadow-color);
     width: 30px;
@@ -351,6 +369,11 @@ button {
         display: flex;
         align-items: center;
         justify-content: center;
+        gap: 10%;
+    }
+
+    .application-logo {
+        margin: 0;
     }
 
     #create-new-list-button {
