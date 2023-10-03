@@ -1,4 +1,4 @@
-const taskEditionForm = document.getElementById('task-detail');
+const taskEditionFormDOM = document.getElementById('task-detail');
 
 // const editTaskButton = document.getElementById('edit-task-button');
 const saveTaskButton = document.getElementById('save-task-button');
@@ -7,32 +7,19 @@ const taskDetailName = document.getElementById('task-detail-name');
 const taskDetailDate = document.getElementById('task-detail-date');
 const taskDetailContent = document.getElementById('task-detail-content');
 
+const taskEditionForm = new Form(taskEditionFormDOM, listContainer);
+
 let targetList = null;
 let targetTask = null;
 
-/**
- * Shows the task edition form.
- * @param {List} list - the list where the task is located.
- * @param {Task} task - the task to make changes on.
- */
-function showTaskEditionForm(list, task) {
-    taskEditionForm.classList.remove('hidden');
-
-    // Populate labels
+taskEditionForm.setOnOpenCallback(() => {
     taskDetailName.innerHTML = task.name;
     taskDetailDate.innerHTML = task.date;
     taskDetailContent.value = task.content;
     
     targetList = list;
     targetTask = task;
-}
-
-/**
- * Hides the task edition form.
- */
-function hideTaskEditionForm() {
-    taskEditionForm.classList.add('hidden');
-}
+});
 
 /**
  * Modifies the ``task`` object to reflect the changes
@@ -47,13 +34,13 @@ function saveChanges() {
         targetList.saveInLocalStorage();
         targetList.render();
     } else {
-        throw new Error('Trying to save data on a null list');
+        throw new Error('Trying to save data on a null list/task.');
     }
 }
 
 saveTaskButton.addEventListener('click', () => {
     saveChanges();
-    hideTaskEditionForm();
+    taskEditionForm.hide();
 });
 
 taskDetailName.addEventListener('click', () => {

@@ -90,7 +90,7 @@ class List {
     bindEventListeners() {
         this.deleteButton.addEventListener('click', () => this.delete());
         this.saveAsCSVButton.addEventListener('click', () => this.saveAsCSV());
-        this.loadCSVButton.addEventListener('click', () => showCSVImportForm());
+        this.loadCSVButton.addEventListener('click', () => csvImportForm.show(true));
         this.filterButton.addEventListener('click', () => this.toggleTaskFiltering());
         this.addNewTaskButton.addEventListener('click', () => showTaskForm());
         this.orderByDueDateButton.addEventListener('click', () => this.orderByDueDate());
@@ -138,7 +138,7 @@ class List {
         const toggleCheckbox = document.createElement('input');
 
         holder.addEventListener('click', () => {
-            showTaskEditionForm(this, task);
+            taskEditionForm.show(false);
         });
 
         toggleCheckbox.addEventListener('change', () => {
