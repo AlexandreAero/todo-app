@@ -90,9 +90,9 @@ class List {
     bindEventListeners() {
         this.deleteButton.addEventListener('click', () => this.delete());
         this.saveAsCSVButton.addEventListener('click', () => this.saveAsCSV());
-        this.loadCSVButton.addEventListener('click', () => csvImportForm.show(true));
+        this.loadCSVButton.addEventListener('click', () => csvImportForm.show(true, this));
         this.filterButton.addEventListener('click', () => this.toggleTaskFiltering());
-        this.addNewTaskButton.addEventListener('click', () => showTaskForm());
+        this.addNewTaskButton.addEventListener('click', () => taskCreationForm.show(false));
         this.orderByDueDateButton.addEventListener('click', () => this.orderByDueDate());
     }
 

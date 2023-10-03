@@ -9,7 +9,7 @@ class TaskEditionForm extends Form {
 
         this.bindEventListeners();
     }
-
+    
     show(blur, list, task) {
         super.show(blur);
 

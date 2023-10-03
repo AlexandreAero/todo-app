@@ -12,19 +12,19 @@
             <input id="application-search-bar" alt="Search bar" type="text" placeholder="Search for lists...">
             <input id="application-settings-button" alt="Settings button" type="image" src="./images/settings.svg"> 
             <input id="application-info-button" alt="Info button" type="image" src="./images/info.svg">
-            <img class="profile-picture" src="./images/pfp.gif" alt="Profile picture">
+            <img class="profile-picture" alt="Profile picture" src="./images/pfp.gif">
         </header>
         <div id="list-creation-form" class="hidden">
             <h2>Create new list:</h2>
-            <input name="list-name-input" type="text" placeholder="">
+            <input name="list-name-input" type="text">
             <button id="list-form-confirm-creation">Create</button>
         </div>
         <div id="task-creation-form" class="hidden">
             <h2>Create new task:</h2>
             <h3>Name:</h3>
-            <input name="task-name-input" type="text" placeholder="">
+            <input name="task-name-input" type="text">
             <h3>Due date:</h3>
-            <input name="task-due-date-input" type="text" placeholder="">
+            <input name="task-due-date-input" type="text">
             <button id="task-form-confirm-creation">Create</button>
         </div>
         <div id="csv-import-form" class="hidden">
@@ -51,8 +51,8 @@
             </div>
         </div>
         <div id="task-detail" class="hidden">
-            <h2 id="task-detail-name" spellcheck="false" contenteditable="false">name here</h2>
-            <h3 id="task-detail-date" spellcheck="false" contenteditable="false">2023-09-30</h3>
+            <h2 id="task-detail-name" spellcheck="false" contenteditable="false"></h2>
+            <h3 id="task-detail-date" spellcheck="false" contenteditable="false"></h3>
             <textarea id="task-detail-content" placeholder="Enter a description..."></textarea>
             <!--<button id="edit-task-button">Edit task</button>-->
             <button id="save-task-button">Save</button>
@@ -63,9 +63,9 @@
             </button>
             <!-- Lists and tasks are added dynamically here -->
         </div>
-        <script type="text/javascript" src="./js/forms/form.js"></script>
         <script type="text/javascript" src="./js/task.js"></script>
         <script type="text/javascript" src="./js/list.js"></script>
+        <script type="text/javascript" src="./js/forms/form.js"></script>
         <script type="text/javascript" src="./js/forms/csvImport.js"></script>
         <script type="text/javascript" src="./js/forms/taskEdition.js"></script>
         <script type="text/javascript" src="./index.js"></script>

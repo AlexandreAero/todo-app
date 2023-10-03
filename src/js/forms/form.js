@@ -6,34 +6,15 @@ class Form {
     }
 
     /**
-     * Set a callback triggered when the form is opened/shown.
-     * @param {Function} callback 
-     */
-    setOnOpenCallback(callback) {
-        this.onOpen = callback;
-    }
-
-    /**
-     * Set a callback triggered when the form is closed/hidden.
-     * @param {Function} callback 
-     */
-    setOnCloseCallback(callback) {
-        this.onClose = callback;
-    }
-
-    /**
      * Show form interface.
-     * @param {Boolean} blur 
+     * @param {Boolean} blur - Specifies if the list container should be
+     * blurred.
      */
     show(blur) {
         this.dom.classList.remove('hidden');
 
         if (blur) {
             this.listContainer.classList.add('blurred');
-        }
-
-        if(this.onOpen) {
-            this.onOpen();
         }
     }
 
@@ -45,10 +26,6 @@ class Form {
 
         if (this.listContainer.classList.contains('blurred')) {
             this.listContainer.classList.remove('blurred');
-        }
-
-        if (this.onClose) {
-            this.onClose();
         }
     }
 }

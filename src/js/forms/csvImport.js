@@ -4,6 +4,11 @@ class CSVImportForm extends Form {
         this.bindEventListeners();
     }
 
+    show(blur, list) {
+        super.show(blur);
+        this.list = list;
+    }
+
     bindEventListeners() {
         const closeButton = document.getElementById('close-csv-import-form-button');
         const loadButton = document.getElementById('load-csv-button');
@@ -11,7 +16,7 @@ class CSVImportForm extends Form {
         closeButton.addEventListener('click', () => super.hide());
         loadButton.addEventListener('click', () => {
             const textArea = document.getElementById('csv-import-form-input-text');
-            firstList.loadFromCSV(textArea.value);
+            this.list.loadFromCSV(textArea.value);
             super.hide();
         });
     }
