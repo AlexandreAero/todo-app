@@ -138,7 +138,7 @@ class List {
         const toggleCheckbox = document.createElement('input');
 
         holder.addEventListener('click', () => {
-            taskEditionForm.show(false);
+            taskEditionForm.show(false, this, task);
         });
 
         toggleCheckbox.addEventListener('change', () => {

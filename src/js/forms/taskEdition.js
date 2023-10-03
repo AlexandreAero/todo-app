@@ -1,54 +1,57 @@
-const taskEditionFormDOM = document.getElementById('task-detail');
+class TaskEditionForm extends Form {
+    constructor(dom, listContainer) {
+        super(dom, listContainer);
 
-// const editTaskButton = document.getElementById('edit-task-button');
-const saveTaskButton = document.getElementById('save-task-button');
+        this.saveButton = document.getElementById('save-task-button');
+        this.taskName = document.getElementById('task-detail-name');
+        this.taskDate = document.getElementById('task-detail-date');
+        this.taskContent = document.getElementById('task-detail-content');
 
-const taskDetailName = document.getElementById('task-detail-name');
-const taskDetailDate = document.getElementById('task-detail-date');
-const taskDetailContent = document.getElementById('task-detail-content');
+        this.bindEventListeners();
+    }
 
-const taskEditionForm = new Form(taskEditionFormDOM, listContainer);
+    show(blur, list, task) {
+        super.show(blur);
 
-let targetList = null;
-let targetTask = null;
+        this.targetList = list;
+        this.targetTask = task;
 
-taskEditionForm.setOnOpenCallback(() => {
-    taskDetailName.innerHTML = task.name;
-    taskDetailDate.innerHTML = task.date;
-    taskDetailContent.value = task.content;
-    
-    targetList = list;
-    targetTask = task;
-});
+        this.taskName.innerHTML = this.targetTask.name;
+        this.taskDate.innerHTML = this.targetTask.date;
+        this.taskContent.value = this.targetTask.content;
+    }
 
-/**
- * Modifies the ``task`` object to reflect the changes
- * made with the edition form.
- */
-function saveChanges() {
-    if (targetTask && targetList) {
-        targetTask.name = taskDetailName.innerHTML;
-        targetTask.date = taskDetailDate.innerHTML;
-        targetTask.content = taskDetailContent.value;
-    
-        targetList.saveInLocalStorage();
-        targetList.render();
-    } else {
-        throw new Error('Trying to save data on a null list/task.');
+    bindEventListeners() {
+        this.saveButton.addEventListener('click', () => {
+            this.saveChanges();
+            super.hide();
+        });
+
+        this.taskName.addEventListener('click', () => {
+            this.taskName.contentEditable = true;
+            this.taskName.focus(); 
+        });
+         
+        this.taskDate.addEventListener('click', () => {
+            this.taskDate.contentEditable = true;
+            this.taskDate.focus();
+        });
+    }
+
+    saveChanges() {
+        if (this.targetTask && this.targetList) {
+            this.targetTask.name = this.taskName.innerHTML;
+            this.targetTask.date = this.taskDate.innerHTML;
+            this.targetTask.content = this.taskContent.value;
+        
+            this.targetList.saveInLocalStorage();
+            this.targetList.render();
+        } else {
+            throw new Error('Trying to save data on a null list/task.');
+        }
     }
 }
 
-saveTaskButton.addEventListener('click', () => {
-    saveChanges();
-    taskEditionForm.hide();
-});
+const taskEditionFormDOM = document.getElementById('task-detail');
 
-taskDetailName.addEventListener('click', () => {
-   taskDetailName.contentEditable = true;
-   taskDetailName.focus(); 
-});
-
-taskDetailDate.addEventListener('click', () => {
-    taskDetailDate.contentEditable = true;
-    taskDetailDate.focus();
-});
+const taskEditionForm = new TaskEditionForm(taskEditionFormDOM, listContainer);
