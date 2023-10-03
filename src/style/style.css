@@ -11,6 +11,12 @@
     --application-header-button-background-color: rgba(255, 255, 255, 0.3);
 }
 
+::placeholder {
+    color: white;
+    opacity: 1; /* Firefox */
+    font-size: 16px;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -59,6 +65,19 @@ button {
     box-shadow: 0px 5px 15px var(--button-box-shadow-color);
     border-radius: 6px;
     padding: 10px 10px;
+}
+
+#application-search-bar {
+    width: 125px;
+    height: 25px;
+    background-color: var(--application-header-button-background-color);
+    border-radius: 6px;
+    padding: 10px 10px;
+    border: none;
+    color: white;
+    font-size: 18px;
+    outline: none;
+    display: none; /* TODO */
 }
 
 .profile-picture {
@@ -284,7 +303,7 @@ button {
     border: 1px solid #ccc;
     border-radius: 5px;
     margin: auto;
-    height: fit-content;
+    height: 15vh;
     resize: none;
 }
 
@@ -315,23 +334,23 @@ button {
 }
 
 .board-bg-white {
-    background-color: white;
+    background-color: #ffffff;
 }
 
 .board-bg-blue {
-    background-color: blue;
+    background-color: #B8CBD0;
 }
 
 .board-bg-green {
-    background-color: green;
+    background-color: #D0D6B3;
 }
 
 .board-bg-red {
-    background-color: red;
+    background-color: #1282A2;
 }
 
 .board-bg-purple {
-    background-color: purple;
+    background-color: #F0A7A0;
 }
 
 /* Dynamic classes */
@@ -362,6 +381,11 @@ button {
     text-decoration: line-through;
 }
 
+.list-detected {
+    border: 6px dashed red;
+    background-color: rgba(255, 0, 0, 0.2);
+}
+
 /* Responsivness */
 
 @media only screen and (max-width : 600px) {
@@ -369,11 +393,11 @@ button {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 10%;
+        gap: 1%;
     }
 
     .application-logo {
-        margin: 0;
+        margin-right: 35%;
     }
 
     #create-new-list-button {
@@ -389,5 +413,19 @@ button {
         display: block;
         width: 90%;
         margin-bottom: 1rem;
+    }
+}
+
+@media only screen and (min-device-width : 600px) and (max-device-width : 1024px) {
+    .list-header-buttons-holder {
+        display: flex;
+        vertical-align: center;
+        justify-content: space-around;
+        flex-direction: column;
+    }
+
+    .list-header-buttons-holder input {
+        width: 90%;
+        margin-bottom: 2%;
     }
 }

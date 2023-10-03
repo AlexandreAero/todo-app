@@ -1,12 +1,11 @@
 const firstList = new List('Todo');
 const secondList = new List('In progress');
 const thirdList = new List('Done');
-const fourthList = new List('Trash');
 
 // Implement drag and drop logic here
 // Implement list manager here
 
-const lists = [firstList, secondList, thirdList, fourthList];
+const lists = [firstList, secondList, thirdList];
 
 document.addEventListener('DOMContentLoaded', () => {
     const lists = document.querySelectorAll('.list');
@@ -85,12 +84,12 @@ settingsButton.addEventListener('click', () => {
     colors.forEach((color) => {
         color.addEventListener('click', () => {
             // color.classList.toggle('selected-board-bg-color');
-            const selectedColor = color.getAttribute('color-data');
+            const selectedColor = getComputedStyle(color).backgroundColor;
             setBoardBackgroundColor(selectedColor);
         });
     });
 });
 
-function setBoardBackgroundColor(color) {
+const setBoardBackgroundColor = (color) => {
     document.body.style.backgroundColor = color;
 }

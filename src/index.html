@@ -9,6 +9,7 @@
     <body>
         <header class="application-header">
             <h1 class="application-logo">!TODO</h1>
+            <input id="application-search-bar" alt="Search bar" type="text" placeholder="Search for lists...">
             <input id="application-settings-button" alt="Settings button" type="image" src="./images/settings.svg"> 
             <input id="application-info-button" alt="Info button" type="image" src="./images/info.svg">
             <img class="profile-picture" src="./images/pfp.gif" alt="Profile picture">
@@ -36,17 +37,17 @@
                 <h4 class="csv-import-form-rule-text">The CSV must have the following header: name;date;content;done</h4>
             </div>
             <textarea id="csv-import-form-input-text" name="CSV import text area" placeholder="Enter CSV here..." spellcheck="false"></textarea>
-            <button id="load-csv-button">Confirm</button>
+            <button id="load-csv-button">Import</button>
         </div>
         <div id="settings" class="hidden">
             <h2>Settings</h2>
             <h3>Board background color</h3>
             <div id="board-bg-color-palette">
-                <div class="board-bg-white" color-data="white"></div>
-                <div class="board-bg-blue" color-data="blue"></div>
-                <div class="board-bg-green" color-data="green"></div>
-                <div class="board-bg-red" color-data="red"></div>
-                <div class="board-bg-purple" color-data="purple"></div>
+                <div class="board-bg-white"></div>
+                <div class="board-bg-blue"></div>
+                <div class="board-bg-green"></div>
+                <div class="board-bg-red"></div>
+                <div class="board-bg-purple"></div>
             </div>
         </div>
         <div id="task-detail" class="hidden">
