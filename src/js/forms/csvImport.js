@@ -14,6 +14,7 @@ class CSVImportForm extends Form {
         const loadButton = document.getElementById('load-csv-button');
 
         closeButton.addEventListener('click', () => super.hide());
+        
         loadButton.addEventListener('click', () => {
             const textArea = document.getElementById('csv-import-form-input-text');
             this.list.loadFromCSV(textArea.value);

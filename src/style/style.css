@@ -86,17 +86,6 @@ button {
     border-radius: 20px;
 }
 
-#list-creation-form,
-#task-creation-form {
-    padding: 18px;
-    height: fit-content;
-    width: 35%;
-    border-radius: 20px;
-    background-color: var(--default-grey-color);
-    margin: 10px auto;
-    display: none;
-}
-
 #list-container {
     padding: 20px;
     overflow-x: scroll;
@@ -203,7 +192,8 @@ button {
     height: 22px;
 }
 
-#csv-import-form {
+#csv-import-form,
+#list-creation-form {
     z-index: 1;
     width: 80%;
     height: fit-content;
@@ -224,7 +214,8 @@ button {
     align-items: center;
 }
 
-#close-csv-import-form-button {
+#close-csv-import-form-button,
+#close-list-creation-form-button {
     background-color: var(--default-grey-color);
     border: none;
     color: white;
@@ -350,7 +341,7 @@ button {
 }
 
 .board-bg-purple {
-    background-color: #F0A7A0;
+    background-color: #7A9E7E;
 }
 
 /* Dynamic classes */
