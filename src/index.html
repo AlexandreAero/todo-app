@@ -15,10 +15,12 @@
             <img class="profile-picture" alt="Profile picture" src="./images/pfp.gif">
         </header>
         <div id="list-creation-form" class="hidden">
-            <h2>Create new list</h2>
+            <div id="list-creation-form-header">
+                <h2>Create new list</h2>
+                <input id="close-list-creation-form-button" type="image" src="./images/close.svg">
+            </div>
             <input id="list-name-input" name="list-name-input" type="text" placeholder="">
             <button id="list-form-confirm-creation">Create</button>
-            <input id="close-list-creation-form-button" type="image" src="./images/close.svg">
         </div>
         <div id="task-creation-form" class="hidden">
             <h2>Create new task</h2>
@@ -51,6 +53,17 @@
                 <div class="board-bg-purple"></div>
             </div>
         </div>
+        <div id="info-form" class="hidden">
+            <h2>Developer information</h2>
+            <br>
+            <h3>GUMERY Alexandre</h3>
+            <h3>CULLIER Théo</h3>
+            <h3>HAMIZI Sami</h3>
+            <br>
+            <h3>Version 1.0.0 - 2023</h3>
+            <br>
+            <h3>Efrei Paris - Web project</h3>
+        </div>
         <div id="task-detail" class="hidden">
             <h2 id="task-detail-name" spellcheck="false" contenteditable="false"></h2>
             <h3 id="task-detail-date" spellcheck="false" contenteditable="false"></h3>
@@ -70,6 +83,7 @@
         <script type="text/javascript" src="./js/forms/csvImport.js"></script>
         <script type="text/javascript" src="./js/forms/taskEdition.js"></script>
         <script type="text/javascript" src="./js/forms/listCreation.js"></script>
+        <script type="text/javascript" src="./js/forms/info.js"></script>
         <script type="text/javascript" src="./index.js"></script>
     </body>
 </html>

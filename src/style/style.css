@@ -2,15 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
 
 :root {
-    --button-box-shadow-color: rgba(0, 0, 0, 0.1);
-    --button-list-header-background-color: purple;
-
-    --list-background-color: rgb(231, 231, 231);
-    
+    --button-box-shadow-color: #0000001a;
+    --list-background-color: #E7E7E7;
     --application-header-background-color: #1a7197;
-    --application-header-button-background-color: rgba(255, 255, 255, 0.3);
+    --application-header-button-background-color: #ffffff4d;
 }
 
+/* Input text placeholder */
 ::placeholder {
     color: white;
     opacity: 1;
@@ -40,6 +38,8 @@ button {
     color: black;
     box-shadow: 0px 5px 15px var(--button-box-shadow-color);
 }
+
+/* Application header */
 
 .application-header {
     background-color: var(--application-header-background-color);
@@ -167,12 +167,7 @@ button {
     white-space: normal;
 }
 
-.list-header-save-as-csv-button,
-.list-header-delete-button,
-.list-header-load-as-csv-button,
-.list-header-filter-button,
-.list-header-new-task-button,
-.list-header-order-by-due-date-button {
+.list-header-buttons-holder input {
     border-style: dashed;
     border-color: grey;
     padding: 10px 10px;
@@ -193,7 +188,8 @@ button {
 }
 
 #csv-import-form,
-#list-creation-form {
+#list-creation-form,
+#info-form {
     z-index: 1;
     width: 80%;
     height: fit-content;
@@ -208,7 +204,8 @@ button {
     transform: translate(-50%, -50%);
 }
 
-#csv-import-form-header {
+#csv-import-form-header,
+#list-creation-form-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -282,12 +279,6 @@ button {
     transform: translate(-50%, -50%);
 }
 
-#save-task-button {
-    margin-top: 12px;
-    background-color: green;
-    color: white;
-}
-
 #task-detail-content {
     width: 95%;
     padding: 10px;
@@ -296,6 +287,12 @@ button {
     margin: auto;
     height: 15vh;
     resize: none;
+}
+
+#save-task-button {
+    margin-top: 12px;
+    background-color: green;
+    color: white;
 }
 
 #settings {
@@ -312,6 +309,8 @@ button {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+/* Settings background color selection */
 
 #board-bg-color-palette {
     display: flex;
@@ -372,6 +371,7 @@ button {
     text-decoration: line-through;
 }
 
+/* TODO */
 .list-detected {
     border: 6px dashed red;
     background-color: rgba(255, 0, 0, 0.2);
@@ -379,6 +379,7 @@ button {
 
 /* Responsivness */
 
+/* Mobile phones */
 @media only screen and (max-width : 600px) {
     .application-header {
         display: flex;
@@ -407,6 +408,7 @@ button {
     }
 }
 
+/* Tablets */
 @media only screen and (min-device-width : 600px) and (max-device-width : 1024px) {
     .list-header-buttons-holder {
         display: flex;

@@ -1,12 +1,3 @@
-const firstList = new List('Todo');
-const secondList = new List('In progress');
-const thirdList = new List('Done');
-
-// Implement drag and drop logic here
-// Implement list manager here
-
-const lists = [firstList, secondList, thirdList];
-
 document.addEventListener('DOMContentLoaded', () => {
     const lists = document.querySelectorAll('.list');
     const tasks = document.querySelectorAll('.task');
@@ -90,6 +81,24 @@ settingsButton.addEventListener('click', () => {
     });
 });
 
+/**
+ * Sets the background color of the application.
+ * @param {String} color 
+ */
 const setBoardBackgroundColor = (color) => {
     document.body.style.backgroundColor = color;
 }
+
+/**
+ * Loads the lists from the local storage memory.
+ */
+function loadListsFromLocalStorage() {
+    Object.keys(localStorage).forEach((key) => {
+        if (key.startsWith('todo-app-tasks-')) {
+            const name = key.replace('todo-app-tasks-', '');
+            new List(name);
+        }
+    });
+}
+
+loadListsFromLocalStorage();

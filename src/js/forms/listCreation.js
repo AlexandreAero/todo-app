@@ -5,7 +5,7 @@ class ListCreationForm extends Form {
         this.createNewListButton = document.getElementById('create-new-list-button');
         this.listName = document.getElementById('list-name-input');
         this.confirmCreation = document.getElementById('list-form-confirm-creation');
-        this.closeButton = document.getElementById('close-list-creation-form-button')
+        this.closeButton = document.getElementById('close-list-creation-form-button');
 
         this.bindEventListeners();
     }
