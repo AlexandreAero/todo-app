@@ -10,8 +10,8 @@ class TaskEditionForm extends Form {
         this.bindEventListeners();
     }
     
-    show(blur, list, task) {
-        super.show(blur);
+    show(list, task) {
+        super.show(false);
 
         this.targetList = list;
         this.targetTask = task;

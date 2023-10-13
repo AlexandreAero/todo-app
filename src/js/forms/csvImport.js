@@ -4,8 +4,8 @@ class CSVImportForm extends Form {
         this.bindEventListeners();
     }
 
-    show(blur, list) {
-        super.show(blur);
+    show(list) {
+        super.show(true);
         this.list = list;
     }
 
