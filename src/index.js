@@ -46,6 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+let lists = [];
+
 /**
  * Loads the lists from the local storage memory.
  */
@@ -53,7 +55,7 @@ function loadListsFromLocalStorage() {
     Object.keys(localStorage).forEach((key) => {
         if (key.startsWith('todo-app-tasks-')) {
             const name = key.replace('todo-app-tasks-', '');
-            new List(name);
+            lists.push(new List(name));
         }
     });
 }

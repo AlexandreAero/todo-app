@@ -339,7 +339,7 @@ button {
 }
 
 /* TODO */
-.list-detected {
+.detected-list {
     border: 6px dashed red;
     background-color: rgba(255, 0, 0, 0.2);
 }

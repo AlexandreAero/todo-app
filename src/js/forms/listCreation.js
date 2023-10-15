@@ -22,7 +22,22 @@ class ListCreationForm extends Form {
             super.hide();
         });
 
-        confirmCreation.addEventListener('click', () => {     
+        listName.addEventListener('input', () => {
+            let names = [];
+            for (const list of lists) {
+                names.push(list.name);
+            }
+
+            if (names.includes(listName.value)) {
+                listName.classList.add('detected-list');
+                confirmCreation.classList.add('hidden');
+            } else {
+                listName.classList.remove('detected-list');
+                confirmCreation.classList.remove('hidden');
+            }
+        });
+
+        confirmCreation.addEventListener('click', () => {
             const newListName = listName.value;
             const list = new List(newListName);
             list.saveInLocalStorage();
