@@ -1,3 +1,7 @@
+/**
+ * The task edition form allows the user to edit a specific task
+ * from a list with this interface.
+ */
 class TaskEditionForm extends Form {
     constructor(dom, listContainer) {
         super(dom, listContainer);
@@ -13,12 +17,12 @@ class TaskEditionForm extends Form {
     show(list, task) {
         super.show(false);
 
-        this.targetList = list;
-        this.targetTask = task;
+        this.list = list;
+        this.task = task;
 
-        this.taskName.innerHTML = this.targetTask.name;
-        this.taskDate.innerHTML = this.targetTask.date;
-        this.taskContent.value = this.targetTask.content;
+        this.taskName.innerHTML = this.task.name;
+        this.taskDate.innerHTML = this.task.date;
+        this.taskContent.value = this.task.content;
     }
 
     bindEventListeners() {
@@ -39,19 +43,18 @@ class TaskEditionForm extends Form {
     }
 
     saveChanges() {
-        if (this.targetTask && this.targetList) {
-            this.targetTask.name = this.taskName.innerHTML;
-            this.targetTask.date = this.taskDate.innerHTML;
-            this.targetTask.content = this.taskContent.value;
+        if (this.task && this.list) {
+            this.task.name = this.taskName.innerHTML;
+            this.task.date = this.taskDate.innerHTML;
+            this.task.content = this.taskContent.value;
         
-            this.targetList.saveInLocalStorage();
-            this.targetList.render();
+            this.list.saveInLocalStorage();
+            this.list.render();
         } else {
-            throw new Error('Trying to save data on a null list/task.');
+            throw new Error('Trying to save data on a null list or task.');
         }
     }
 }
 
 const taskEditionFormDOM = document.getElementById('task-detail');
-
 const taskEditionForm = new TaskEditionForm(taskEditionFormDOM, listContainer);

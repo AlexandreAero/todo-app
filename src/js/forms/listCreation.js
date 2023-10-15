@@ -1,29 +1,32 @@
+/**
+ * The list creation form allows the user to create
+ * a new list from this interface.
+ */
 class ListCreationForm extends Form {
     constructor(dom, listContainer) {
-        super(dom, listContainer); 
-
-        this.createNewListButton = document.getElementById('create-new-list-button');
-        this.listName = document.getElementById('list-name-input');
-        this.confirmCreation = document.getElementById('list-form-confirm-creation');
-        this.closeButton = document.getElementById('close-list-creation-form-button');
-
+        super(dom, listContainer);
         this.bindEventListeners();
     }
 
     bindEventListeners() {
-        this.createNewListButton.addEventListener('click', () => {
+        const createNewListButton = document.getElementById('create-new-list-button');
+        const listName = document.getElementById('list-name-input');
+        const confirmCreation = document.getElementById('list-form-confirm-creation');
+        const closeButton = document.getElementById('close-list-creation-form-button');
+
+        createNewListButton.addEventListener('click', () => {
             super.show(true);
         });
 
-        this.closeButton.addEventListener('click', () => {
-            this.hide();
+        closeButton.addEventListener('click', () => {
+            super.hide();
         });
 
-        this.confirmCreation.addEventListener('click', () => {     
-            const newListName = this.listName.value;
+        confirmCreation.addEventListener('click', () => {     
+            const newListName = listName.value;
             const list = new List(newListName);
             list.saveInLocalStorage();
-            this.hide();
+            super.hide();
         });
     }
 }

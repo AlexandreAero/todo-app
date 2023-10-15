@@ -137,17 +137,16 @@ class List {
         const deleteButton = document.createElement('input');
         const toggleCheckbox = document.createElement('input');
 
-        holder.addEventListener('click', () => {
-            taskEditionForm.show(this, task);
+        holder.addEventListener('click', (event) => {
+            if (event.target.tagName !== 'INPUT') {
+                taskEditionForm.show(this, task);
+            }
         });
 
         toggleCheckbox.addEventListener('change', () => {
             task.done = toggleCheckbox.checked;
-            if (task.done) {
-                holder.classList.add('task-done');
-            } else {
-                holder.classList.remove('task-done');
-            }
+            task.done ? holder.classList.add('task-done') : 
+                        holder.classList.remove('task-done');
             this.saveInLocalStorage();
         });
 
@@ -305,8 +304,8 @@ class List {
     }
 
     /**
-     * Outputs a string containing the tasks formatted as CSV. The CSV
-     * is shown with the following header: `name;date;content;done`.
+     * Copies into the clipboard a string containing the tasks
+     * formatted as CSV with the following header: `name;date;content;done`.
      */
     saveAsCSV() {
         if (!this.tasks || this.tasks.length === 0) {
@@ -330,19 +329,19 @@ class List {
     }
 
     /**
-     * Loads the tasks from a CSV string buffer. The file should have
+     * Loads the tasks from a CSV string buffer. The string should have
      * the following header: `name;date;content;done`.
      * @param {String} csvBuffer a string buffer of the CSV content.
      */
     loadFromCSV(csvBuffer) {
         const lines = csvBuffer.trim().split('\n');
         if (lines.length === 0) {
-            throw new Error('CSV buffer is empty');
+            throw new Error('CSV buffer is empty.');
         }
 
         const header = lines[0].split(';');
         if (header.length !== 4) {
-            throw new Error('CSV header is invalid');
+            throw new Error('CSV header is invalid.');
         }
 
         lines.shift(); // Remove header

@@ -1,3 +1,7 @@
+/**
+ * The CSV import form allows the user to create lists from a raw
+ * and valid CSV string from this interface.
+ */
 class CSVImportForm extends Form {
     constructor(dom, listContainer) {
         super(dom, listContainer);

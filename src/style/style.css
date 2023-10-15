@@ -189,7 +189,9 @@ button {
 
 #csv-import-form,
 #list-creation-form,
-#info-form {
+#info-form,
+#settings,
+#task-detail {
     z-index: 1;
     width: 80%;
     height: fit-content;
@@ -228,22 +230,6 @@ button {
     height: 20px;
 }
 
-#csv-import-form-input-text {
-    width: 95%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin: auto;
-    height: 40vh;
-    resize: none;
-}
-
-#load-csv-button {
-    margin-top: 12px;
-    width: 100%;
-    color: black;
-}
-
 .csv-import-form-rules {
     border: 2px solid rgba(255, 166, 0, 0.4);
     border-radius: 16px;
@@ -254,9 +240,14 @@ button {
     margin-bottom: 18px;
 }
 
-.csv-import-form-rule-text {
-    width: 80%;
-    margin: 10px;
+#csv-import-form-input-text {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: auto;
+    height: 40vh;
+    resize: none;
 }
 
 .form-rules-warning-sign {
@@ -264,19 +255,14 @@ button {
     height: 40px;
 }
 
-#task-detail {
-    z-index: 1;
+.csv-import-form-rule-text {
     width: 80%;
-    height: fit-content;
-    max-width: 400px;
-    padding: 20px;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin: 10px;
+}
+
+#load-csv-button {
+    margin-top: 12px;
+    width: 100%;
 }
 
 #task-detail-content {
@@ -293,21 +279,6 @@ button {
     margin-top: 12px;
     background-color: green;
     color: white;
-}
-
-#settings {
-    z-index: 1;
-    width: 80%;
-    height: fit-content;
-    max-width: 400px;
-    padding: 20px;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 /* Settings background color selection */
@@ -355,10 +326,6 @@ button {
 
 .task-dragging {
     transform: rotateZ(5deg);
-}
-
-.selected-board-bg-color {
-    border: 3px solid black;
 }
 
 .list-header-button-active {

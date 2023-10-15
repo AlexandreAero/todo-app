@@ -1,4 +1,6 @@
-// Base class for forms.
+/**
+ * Base class to create forms.
+ */
 class Form {
     constructor(domParent, listContainer) {
         this.dom = domParent;

@@ -1,21 +1,20 @@
+/**
+ * Info form is an interface to provide informations related
+ * to the development of the web application.
+ */
 class InfoForm extends Form {
     constructor(dom, listConstructor) {
         super(dom, listConstructor);
-
-        this.infoButton = document.getElementById('application-info-button');
         this.shown = false;
 
         this.bindEventListeners();
     }
 
     bindEventListeners() {
-        this.infoButton.addEventListener('click', () => {
-            if (this.shown) {
-                super.hide();
-            } else {
-                super.show(true);
-            }
-            
+        const infoButton = document.getElementById('application-info-button');
+
+        infoButton.addEventListener('click', () => {
+            this.shown ? super.hide() : super.show(true);
             this.shown = !this.shown;
         });
     }
