@@ -191,7 +191,8 @@ button {
 #list-creation-form,
 #info-form,
 #settings,
-#task-detail {
+#task-detail,
+#task-creation-form {
     z-index: 1;
     width: 80%;
     height: fit-content;
@@ -207,14 +208,16 @@ button {
 }
 
 #csv-import-form-header,
-#list-creation-form-header {
+#list-creation-form-header,
+#task-creation-form-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 #close-csv-import-form-button,
-#close-list-creation-form-button {
+#close-list-creation-form-button,
+#close-task-creation-form-button {
     background-color: var(--default-grey-color);
     border: none;
     color: white;
@@ -231,9 +234,9 @@ button {
 }
 
 .csv-import-form-rules {
-    border: 2px solid rgba(255, 166, 0, 0.4);
+    border: 2px solid #ffa60066;
     border-radius: 16px;
-    background-color: rgba(255, 255, 0, 0.3);
+    background-color: #ffff004d;
     display: flex;
     align-items: center;
     justify-content: space-evenly;

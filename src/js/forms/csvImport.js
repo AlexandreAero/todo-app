@@ -23,6 +23,7 @@ class CSVImportForm extends Form {
             const textArea = document.getElementById('csv-import-form-input-text');
             this.list.loadFromCSV(textArea.value);
             super.hide();
+            textArea.value = '';
         });
     }
 }

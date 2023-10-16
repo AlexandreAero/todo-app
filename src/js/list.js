@@ -11,7 +11,6 @@ class List {
 
         this.orderingTasksByDueDate = false;
 
-        this.localStorageKey = `todo-app-tasks-${this.name}`;
         this.filteringState = 'none';
 
         this.initDOM();
@@ -36,6 +35,9 @@ class List {
         this.filterButton = document.createElement('input');
         this.addNewTaskButton = document.createElement('input');
         this.orderByDueDateButton = document.createElement('input');
+
+        this.headerName.contentEditable = true;
+        this.headerName.spellcheck = false;
 
         this.parent.className = 'list';
         this.header.className = 'list-header';
@@ -92,7 +94,7 @@ class List {
         this.saveAsCSVButton.addEventListener('click', () => this.saveAsCSV());
         this.loadCSVButton.addEventListener('click', () => csvImportForm.show(this));
         this.filterButton.addEventListener('click', () => this.toggleTaskFiltering());
-        this.addNewTaskButton.addEventListener('click', () => taskCreationForm.show(false));
+        this.addNewTaskButton.addEventListener('click', () => taskCreationForm.show(this));
         this.orderByDueDateButton.addEventListener('click', () => this.orderByDueDate());
     }
 
@@ -138,6 +140,8 @@ class List {
         const toggleCheckbox = document.createElement('input');
 
         holder.addEventListener('click', (event) => {
+            // Make sure we're not clicking on the done checkbox or the
+            // delete button
             if (event.target.tagName !== 'INPUT') {
                 taskEditionForm.show(this, task);
             }
@@ -198,7 +202,7 @@ class List {
      * @param {String} content 
      * @param {Boolean} done 
      */
-    addTask(name, date, content, done = false) {
+    addTask(name, date, content, done) {
         const task = new Task(name, date, content, done);
         this.tasks.push(task);
 
@@ -223,26 +227,7 @@ class List {
             this.saveInLocalStorage();
             this.render();
         } else {
-            throw new Error(`Invalid task index ${taskIndex}`);
-        }
-    }
-
-    /**
-     *  Transfers the task located at taskIndex to the target list
-     * `newList` and at index `newIndex`.
-     * @param {Number} taskIndex the index in the list of the task to be transfered
-     * @param {List} newList new target list where the task should be tranfsered
-     * @param {Number} newIndex new target task index in the targeted list
-     */
-    transferTask(taskIndex, newList, newIndex) {
-        if (taskIndex >= 0 && taskIndex < this.tasks.length 
-            && newIndex >= 0 && newIndex <= newList.tasks.length) {
-            // TODO:
-            
-            this.saveInLocalStorage();
-            this.render();
-        } else {
-            throw new Error(`Invalid task index ${taskIndex}`);
+            throw new Error(`Invalid task index ${taskIndex}.`);
         }
     }
 
@@ -253,7 +238,7 @@ class List {
         this.tasks = [];
         this.tasksDOM = [];
         this.parent.remove();
-        localStorage.removeItem(this.localStorageKey);
+        localStorage.removeItem(`todo-app-tasks-${this.name}`);
     }
 
     /**
@@ -297,7 +282,7 @@ class List {
                 this.filterButton.classList.remove(className);
                 break;
             default:
-                throw new Error('Invalid filtering state');
+                throw new Error('Invalid filtering state.');
         }
 
         this.render();
@@ -348,7 +333,9 @@ class List {
 
         lines.forEach((line) => {
             const subLines = line.split(';');
-            const done = subLines[3] === 'true' ? true : false;
+            const done = (subLines[3] === 'true');
+
+            // We dispatch the arguments in the correct order
             this.addTask(subLines[0], subLines[1], subLines[2], done);
         });
     }
@@ -358,7 +345,7 @@ class List {
      */
     saveInLocalStorage() {
         const jsonTasks = JSON.stringify(this.tasks);
-        localStorage.setItem(this.localStorageKey, jsonTasks);
+        localStorage.setItem(`todo-app-tasks-${this.name}`, jsonTasks);
     }
     
     /**
@@ -367,7 +354,7 @@ class List {
      * local storage.
      */
     loadFromLocalStorage() {
-        const jsonTasks = localStorage.getItem(this.localStorageKey);
+        const jsonTasks = localStorage.getItem(`todo-app-tasks-${this.name}`);
         if (jsonTasks !== null) {
             this.tasks = JSON.parse(jsonTasks);
         }

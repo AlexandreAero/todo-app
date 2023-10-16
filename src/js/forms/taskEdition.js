@@ -6,7 +6,6 @@ class TaskEditionForm extends Form {
     constructor(dom, listContainer) {
         super(dom, listContainer);
 
-        this.saveButton = document.getElementById('save-task-button');
         this.taskName = document.getElementById('task-detail-name');
         this.taskDate = document.getElementById('task-detail-date');
         this.taskContent = document.getElementById('task-detail-content');
@@ -26,22 +25,17 @@ class TaskEditionForm extends Form {
     }
 
     bindEventListeners() {
-        this.saveButton.addEventListener('click', () => {
+        const saveButton = document.getElementById('save-task-button');
+
+        saveButton.addEventListener('click', () => {
             this.saveChanges();
             super.hide();
         });
-
-        this.taskName.addEventListener('click', () => {
-            this.taskName.contentEditable = true;
-            this.taskName.focus(); 
-        });
-         
-        this.taskDate.addEventListener('click', () => {
-            this.taskDate.contentEditable = true;
-            this.taskDate.focus();
-        });
     }
 
+    /**
+     * Save changes made on the lists and tasks.
+     */
     saveChanges() {
         if (this.task && this.list) {
             this.task.name = this.taskName.innerHTML;

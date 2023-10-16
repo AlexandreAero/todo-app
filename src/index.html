@@ -23,11 +23,14 @@
             <button id="list-form-confirm-creation">Create</button>
         </div>
         <div id="task-creation-form" class="hidden">
-            <h2>Create new task</h2>
+            <div id="task-creation-form-header">
+                <h2>Create new task</h2>
+                <input id="close-task-creation-form-button" type="image" src="./images/close.svg">
+            </div>
             <h3>Name:</h3>
-            <input name="task-name-input" type="text">
+            <input id="task-name-input" name="task-name-input" type="text">
             <h3>Due date:</h3>
-            <input name="task-due-date-input" type="text">
+            <input id="task-due-date-input" name="task-due-date-input" type="date">
             <button id="task-form-confirm-creation">Create</button>
         </div>
         <div id="csv-import-form" class="hidden">
@@ -68,8 +71,8 @@
             <h3>Efrei Paris - Web project</h3>
         </div>
         <div id="task-detail" class="hidden">
-            <h2 id="task-detail-name" spellcheck="false" contenteditable="false"></h2>
-            <h3 id="task-detail-date" spellcheck="false" contenteditable="false"></h3>
+            <h2 id="task-detail-name" spellcheck="false" contenteditable="true"></h2>
+            <h3 id="task-detail-date" spellcheck="false" contenteditable="true"></h3>
             <textarea id="task-detail-content" placeholder="Enter a description..."></textarea>
             <!--<button id="edit-task-button">Edit task</button>-->
             <button id="save-task-button">Save</button>
@@ -86,6 +89,7 @@
         <script type="text/javascript" src="./js/forms/csvImport.js"></script>
         <script type="text/javascript" src="./js/forms/taskEdition.js"></script>
         <script type="text/javascript" src="./js/forms/listCreation.js"></script>
+        <script type="text/javascript" src="./js/forms/taskCreation.js"></script>
         <script type="text/javascript" src="./js/forms/info.js"></script>
         <script type="text/javascript" src="./js/forms/settings.js"></script>
         <script type="text/javascript" src="./index.js"></script>

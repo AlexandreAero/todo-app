@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const lists = document.querySelectorAll('.list');
     const tasks = document.querySelectorAll('.task');
 
-    let dropTarget = null;
-    let draggedTask = null;
+    let dropTarget = null; // Keep track of the potential target list
+    let draggedTask = null; // Keep track of dragged task
     
     lists.forEach((list) => {
         list.addEventListener('dragover', (event) => {
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        list.addEventListener('drop', (event) => {
+        list.addEventListener('drop', () => {
             if (draggedTask && dropTarget && dropTarget !== draggedTask.parentElement) {
                 dropTarget.appendChild(draggedTask);
             }
@@ -52,12 +52,14 @@ let lists = [];
  * Loads the lists from the local storage memory.
  */
 function loadListsFromLocalStorage() {
-    Object.keys(localStorage).forEach((key) => {
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+
         if (key.startsWith('todo-app-tasks-')) {
             const name = key.replace('todo-app-tasks-', '');
             lists.push(new List(name));
         }
-    });
+    }
 }
 
 loadListsFromLocalStorage();

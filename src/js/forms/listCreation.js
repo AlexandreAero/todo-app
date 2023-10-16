@@ -14,15 +14,11 @@ class ListCreationForm extends Form {
         const confirmCreation = document.getElementById('list-form-confirm-creation');
         const closeButton = document.getElementById('close-list-creation-form-button');
 
-        createNewListButton.addEventListener('click', () => {
-            super.show(true);
-        });
-
-        closeButton.addEventListener('click', () => {
-            super.hide();
-        });
+        createNewListButton.addEventListener('click', () => super.show(true));
+        closeButton.addEventListener('click', () => super.hide());
 
         listName.addEventListener('input', () => {
+            // Make sure we can't reuse the same name for several lists
             let names = [];
             for (const list of lists) {
                 names.push(list.name);
